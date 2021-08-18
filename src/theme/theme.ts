@@ -37,6 +37,11 @@ const theme = {
         semiBold: 600,
         bolder: 700,
   },
+  fontFamily: {
+    primary: 'Montserrat',
+    secondary: 'Lato',
+    third: 'Roboto',
+  },
 };
 
 export default theme;

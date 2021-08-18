@@ -1,13 +1,12 @@
-import React from 'react';
-import { HeaderContainer } from './Header.styles';
+import { HeaderContainer, HeaderContent, HeaderText } from './Header.styles';
 
 export const Header = (): JSX.Element => {
   return (
-    <div>
-      <HeaderContainer>
-        <p>New Header</p>
-      </HeaderContainer>
-    </div>
+    <HeaderContainer>
+      <HeaderContent>
+        <HeaderText>Keep your memories</HeaderText>
+      </HeaderContent>
+    </HeaderContainer>
   );
 };
 

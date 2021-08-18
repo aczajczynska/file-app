@@ -1,11 +1,19 @@
-import React from 'react';
-import Header from './components/Header/Header';
+import { lazy, Suspense } from 'react';
+import { ThemeProvider } from 'styled-components';
+import theme from 'theme/theme';
+import Layout from './components/Layout/Layout';
 
 function Root() {
+  const UploadFile = lazy(() => import('components/UploadFIle/UploadFile'));
+
   return (
-    <div>
-      <Header />
-    </div>
+    <ThemeProvider theme={theme}>
+      <Layout>
+        <Suspense fallback={<div>loading...</div>}>
+          <UploadFile />
+        </Suspense>
+      </Layout>
+    </ThemeProvider>
   );
 }
 
