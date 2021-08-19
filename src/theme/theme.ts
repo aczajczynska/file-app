@@ -1,6 +1,7 @@
 const theme = {
     colors: {
         blueLight: "#8abbf5",
+        dodgerBlue : "#1E90FF",
         white: "#FFFFFF",
         black: "#000000",
         darkFont: "#434343",
