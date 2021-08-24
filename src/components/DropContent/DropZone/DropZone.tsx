@@ -1,6 +1,9 @@
-import { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 import Upload from '../../../assets/images/upload.png';
-import { SelectedFiles } from '../../../namespace/files';
+import {
+  SelectedFilesProps,
+  SelectedFileProps,
+} from '../../../namespace/files';
 import {
   DropContainer,
   DropContent,
@@ -14,13 +17,15 @@ import {
   FileSize,
   FileRemove,
   FileErrorMessage,
+  FileType,
 } from './DropZone.styles';
 
 interface IProps {}
 
 const DropZone: FC<IProps> = () => {
-  const [selectedFiles, setSelectedFiles] = useState<any>([]);
+  const [selectedFiles, setSelectedFiles] = useState<SelectedFilesProps>([]);
   const [errorMessage, setErrorMessage] = useState<string>('');
+  const [validFiles, setValidFiles] = useState<SelectedFilesProps>([]);
 
   const dragOver = (ev: any) => {
     ev.preventDefault();
@@ -34,7 +39,19 @@ const DropZone: FC<IProps> = () => {
     ev.preventDefault();
   };
 
-  const validateFile = (file: any) => {
+  // useEffect(() => {
+  //   let filteredArray = selectedFiles.reduce((file, current) => {
+  //     const x = file.find((item) => item.name === current.name);
+  //     if (!x) {
+  //       return file.concat([current]);
+  //     } else {
+  //       return file;
+  //     }
+  //   }, []);
+  //   setValidFiles([...filteredArray]);
+  // }, [selectedFiles]);
+
+  const validateFile = (file: SelectedFileProps) => {
     const validTypes = [
       'image/jpeg',
       'image/jpg',
@@ -48,17 +65,17 @@ const DropZone: FC<IProps> = () => {
     return true;
   };
 
-  const handleFiles = (files: any) => {
+  const handleFiles = (files: SelectedFilesProps) => {
     for (let i = 0; i < files.length; i++) {
       if (validateFile(files[i])) {
         // add to an array so we can display the name of file
+        setSelectedFiles((prevArray: any) => [...prevArray, files[i]]);
       } else {
+        setErrorMessage('File type not permitted');
         // add a new property called invalid
         files[i]['invalid'] = true;
         // add to the same array so we can display the name of the file
         setSelectedFiles((prevArray: any) => [...prevArray, files[i]]);
-        // set error message
-        setErrorMessage('File type not permitted');
       }
     }
   };
@@ -70,6 +87,23 @@ const DropZone: FC<IProps> = () => {
       handleFiles(files);
     }
     console.log(files);
+  };
+
+  console.log(selectedFiles, 'selectedFiles');
+
+  const fileSize = (size: number) => {
+    if (size === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+    const i = Math.floor(Math.log(size) / Math.log(k));
+    return parseFloat((size / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  };
+
+  const fileType = (fileName: string) => {
+    return (
+      fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length) ||
+      fileName
+    );
   };
 
   return (
@@ -84,17 +118,22 @@ const DropZone: FC<IProps> = () => {
         <DropText>Drag and Drop files here or click to select files.</DropText>
       </DropContent>
       <FileDisplayContainer>
-        <FileStatusBar>
-          <>
-            <FileInfo>
-              <FileTypeLogo src={Upload} />
-              <FileName>dknckwennew.png</FileName>
-              <FileSize>(534 KB)</FileSize>
-              <FileErrorMessage>(File type not permitted)</FileErrorMessage>
-            </FileInfo>
-            <FileRemove>X</FileRemove>
-          </>
-        </FileStatusBar>
+        {selectedFiles.map((data: any, i: any) => (
+          <FileStatusBar key={i}>
+            <>
+              <FileInfo>
+                <FileTypeLogo src={Upload} />
+                <FileName>{data.name}</FileName>
+                <FileType>{fileType(data.name)}</FileType>
+                <FileSize>{fileSize(data.size)}</FileSize>
+                {data.invalid && (
+                  <FileErrorMessage>{errorMessage}</FileErrorMessage>
+                )}
+              </FileInfo>
+              <FileRemove>X</FileRemove>
+            </>
+          </FileStatusBar>
+        ))}
       </FileDisplayContainer>
     </DropContainer>
   );

@@ -1,3 +1,11 @@
-export interface SelectedFile {}
+export interface SelectedFileProps {
+  lastModified: number,
+  lastModifiedDate: {}
+  name: string,
+  size: number,
+  type: string,
+  webkitRelativePath: string,
+  invalid?: boolean,
+}
 
-export type SelectedFiles = Array<SelectedFile>;
+export type SelectedFilesProps = Array<SelectedFileProps>;

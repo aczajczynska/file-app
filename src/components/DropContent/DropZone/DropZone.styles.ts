@@ -78,6 +78,10 @@ export const FileName = styled.span`
     };
 `;
 
+export const FileType = styled(FileName)`
+  text-transform: uppercase;
+`
+
 export const FileSize = styled(FileName)``;
 
 export const FileErrorMessage = styled(FileName)`
