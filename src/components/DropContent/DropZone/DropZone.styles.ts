@@ -88,11 +88,52 @@ export const FileErrorMessage = styled(FileName)`
     color: red;
 `;
 
-export const FileRemove = styled(FileName)`
-  padding-right: 0;
+export const FileRemove = styled.div`
+  cursor: pointer;
 `;
 
+// modal
 
+export const Modal = styled.div`
+    z-index: 999;
+    display: none;
+    overflow: hidden;
+`;
+
+export const Overlay = styled.div`
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,.66);
+    position: absolute;
+    top: 0;
+    left: 0;
+`;
+
+export const Close = styled.span`
+    position: absolute;
+    top: 12px;
+    right: 30px;
+    color: #f1f1f1;
+    font-size: 25px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+  `;
+
+export const ModalImage = styled.div`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    overflow: hidden;
+    object-fit: cover;
+    width: 100%;
+    height: 300px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: none;
+`;
 
 
 
