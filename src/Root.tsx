@@ -4,7 +4,9 @@ import theme from 'theme/theme';
 import Layout from './components/Layout/Layout';
 
 function Root() {
-  const UploadFile = lazy(() => import('components/UploadFIle/UploadFile'));
+  const UploadFile = lazy(
+    () => import('components/DropContent/UploadFIle/UploadFile'),
+  );
 
   return (
     <ThemeProvider theme={theme}>
