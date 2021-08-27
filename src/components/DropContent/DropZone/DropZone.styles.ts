@@ -1,7 +1,6 @@
 import styled from "theme/styled-components";
 
 export const DropContainer = styled.div`
-    background-color: yellow;
     width: 850px;
 
       @media (max-width: 960px ) {
@@ -43,7 +42,6 @@ export const UploadImg = styled.img`
 
 export const FileDisplayContainer = styled.div`
   margin-top: 15px;
-  background-color: pink;
 
   @media (max-width: 580px ) {
         margin-top: 10px;
@@ -61,7 +59,7 @@ export const FileStatusBar = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-
+  cursor: pointer;
 `;
 
 export const FileTypeLogo = styled.img`
