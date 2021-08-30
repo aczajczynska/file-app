@@ -1,6 +1,9 @@
 import { FC, useState, useEffect, useRef } from 'react';
+import File from '../../../assets/images/file.png';
 import Upload from '../../../assets/images/upload.png';
-import { Button, Container, Row, Col } from 'react-bootstrap';
+
+import { Container, Row, Col } from 'react-bootstrap';
+import { Button } from '../../../ui-components/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   SelectedFilesProps,
@@ -59,7 +62,7 @@ const DropZone: FC<IProps> = () => {
     setValidFiles([...filteredArray]);
   }, [selectedFiles]);
 
-  const validateFile = (file: SelectedFileProps) => {
+  const validateImgFile = (file: SelectedFileProps) => {
     const validTypes = [
       'image/jpeg',
       'image/jpg',
@@ -75,7 +78,7 @@ const DropZone: FC<IProps> = () => {
 
   const handleFiles = (files: SelectedFilesProps) => {
     for (let i = 0; i < files.length; i++) {
-      if (validateFile(files[i])) {
+      if (validateImgFile(files[i])) {
         // add to an array so we can display the name of file
         setSelectedFiles((prevArray: any) => [...prevArray, files[i]]);
       } else {
@@ -149,8 +152,8 @@ const DropZone: FC<IProps> = () => {
   return (
     <Container>
       <Row>
-        <Col>
-          <Button className='mb-1'>Upload file</Button>
+        <Col xs={2}>
+          <Button option='success'>Upload</Button>
         </Col>
       </Row>
       <Row>
@@ -179,7 +182,7 @@ const DropZone: FC<IProps> = () => {
                     }
                   >
                     <FileInfo>
-                      <FileTypeLogo src={Upload} />
+                      <FileTypeLogo src={File} />
                       <FileName>{data.name}</FileName>
                       <FileType>{fileType(data.name)}</FileType>
                       <FileSize>{fileSize(data.size)}</FileSize>

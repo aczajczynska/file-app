@@ -4,6 +4,11 @@ const theme = {
         dodgerBlue : "#1E90FF",
         white: "#FFFFFF",
         black: "#000000",
+        silverChalice: '#9f9f9f',
+        silver: '#bfbfbf',
+        nobel: '#B3B3B3',
+        grey: '#808080',
+        green: '#009933',
         darkFont: "#434343",
         moonLight: "#f2cf7c",
         moonDark: "#cc9460",
@@ -38,11 +43,16 @@ const theme = {
         semiBold: 600,
         bolder: 700,
   },
-  fontFamily: {
-    primary: 'Montserrat',
-    secondary: 'Lato',
-    third: 'Roboto',
+    fontFamily: {
+        primary: 'Montserrat',
+        secondary: 'Lato',
+        third: 'Roboto',
   },
+   device: {
+    mobile: 'screen and (max-width: 767)',
+    mobileUp: 'screen and (min-width: 767)',
+  },
+
 };
 
 export default theme;
