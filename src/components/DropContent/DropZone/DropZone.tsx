@@ -1,11 +1,13 @@
-import { FC, useState, useEffect, useRef, useLayoutEffect } from 'react';
+import { FC, useState, useEffect, useRef } from 'react';
 import Upload from '../../../assets/images/upload.png';
+import { Button, Container, Row, Col } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   SelectedFilesProps,
   SelectedFileProps,
 } from '../../../namespace/files';
+
 import {
-  DropContainer,
   DropContent,
   DropText,
   UploadImg,
@@ -18,7 +20,6 @@ import {
   FileRemove,
   FileErrorMessage,
   FileType,
-  //
   Modal,
   Overlay,
   Close,
@@ -146,48 +147,62 @@ const DropZone: FC<IProps> = () => {
   };
 
   return (
-    <DropContainer>
-      <DropContent
-        onDragOver={dragOver}
-        onDragEnter={dragEnter}
-        onDragLeave={dragLeave}
-        onDrop={fileDrop}
-      >
-        <UploadImg src={Upload} />
-        <DropText>Drag and Drop files here or click to select files.</DropText>
-      </DropContent>
-      <FileDisplayContainer>
-        {validFiles.map((data: any, i: any) => (
-          <FileStatusBar key={i}>
-            <>
-              <div
-                onClick={
-                  !data.invalid
-                    ? () => openImageModal(data)
-                    : () => removeFile(data.name)
-                }
-              >
-                <FileInfo>
-                  <FileTypeLogo src={Upload} />
-                  <FileName>{data.name}</FileName>
-                  <FileType>{fileType(data.name)}</FileType>
-                  <FileSize>{fileSize(data.size)}</FileSize>
-                  {data.invalid && (
-                    <FileErrorMessage>{errorMessage}</FileErrorMessage>
-                  )}
-                </FileInfo>
-              </div>
-              <FileRemove onClick={() => removeFile(data.name)}>X</FileRemove>
-            </>
-          </FileStatusBar>
-        ))}
-      </FileDisplayContainer>
+    <Container>
+      <Row>
+        <Col>
+          <Button className='mb-1'>Upload file</Button>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <DropContent
+            onDragOver={dragOver}
+            onDragEnter={dragEnter}
+            onDragLeave={dragLeave}
+            onDrop={fileDrop}
+          >
+            <UploadImg src={Upload} />
+            <DropText>
+              Drag and Drop files here or click to select files.
+            </DropText>
+          </DropContent>
+
+          <FileDisplayContainer>
+            {validFiles.map((data: any, i: any) => (
+              <FileStatusBar key={i}>
+                <>
+                  <div
+                    onClick={
+                      !data.invalid
+                        ? () => openImageModal(data)
+                        : () => removeFile(data.name)
+                    }
+                  >
+                    <FileInfo>
+                      <FileTypeLogo src={Upload} />
+                      <FileName>{data.name}</FileName>
+                      <FileType>{fileType(data.name)}</FileType>
+                      <FileSize>{fileSize(data.size)}</FileSize>
+                      {data.invalid && (
+                        <FileErrorMessage>{errorMessage}</FileErrorMessage>
+                      )}
+                    </FileInfo>
+                  </div>
+                  <FileRemove onClick={() => removeFile(data.name)}>
+                    X
+                  </FileRemove>
+                </>
+              </FileStatusBar>
+            ))}
+          </FileDisplayContainer>
+        </Col>
+      </Row>
       <Modal ref={modalRef}>
         <Overlay></Overlay>
         <Close onClick={() => closeModal()}>X</Close>
         <ModalImage ref={modalImageRef}></ModalImage>
       </Modal>
-    </DropContainer>
+    </Container>
   );
 };
 

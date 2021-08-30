@@ -1,18 +1,5 @@
 import styled from "theme/styled-components";
 
-export const DropContainer = styled.div`
-    width: 850px;
-
-      @media (max-width: 960px ) {
-        width: 550px;
-    };
-
-     @media (max-width: 580px ) {
-        width: 350px;
-    };
-
-`;
-
 export const DropContent = styled.div`
     display: flex;
     flex-direction: column;
@@ -132,6 +119,5 @@ export const ModalImage = styled.div`
     background-position: center;
     background-image: none;
 `;
-
 
 

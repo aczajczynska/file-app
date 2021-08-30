@@ -1,12 +1,16 @@
-import { HeaderContainer, HeaderContent, HeaderText } from './Header.styles';
+import { HeaderText } from './Header.styles';
+import { Container, Col, Row } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const Header = (): JSX.Element => {
   return (
-    <HeaderContainer>
-      <HeaderContent>
-        <HeaderText>Keep your memories</HeaderText>
-      </HeaderContent>
-    </HeaderContainer>
+    <Container>
+      <Row>
+        <Col>
+          <HeaderText>Keep your memories</HeaderText>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

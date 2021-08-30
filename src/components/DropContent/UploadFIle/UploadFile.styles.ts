@@ -13,4 +13,5 @@ export const Title = styled.h3`
   font-family: ${({ theme }) => theme.fontFamily.secondary};
   padding-bottom: 50px;
   padding-top: 50px;
+  text-align: center;
 `;
