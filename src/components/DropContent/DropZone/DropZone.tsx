@@ -153,7 +153,7 @@ const DropZone: FC<IProps> = () => {
     <Container>
       <Row>
         <Col xs={2}>
-          <Button option='success'>Upload</Button>
+          <Button label='Upload' />
         </Col>
       </Row>
       <Row>
