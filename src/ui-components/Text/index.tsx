@@ -2,7 +2,7 @@ import { Txt } from './Text.styles';
 
 export interface TextProps {
   content: string;
-  option: 'title' | 'subtitle' | 'content';
+  option: 'title' | 'subtitle' | 'content' | 'text';
 }
 
 const Text = ({ content, option, ...props }: TextProps) => {
