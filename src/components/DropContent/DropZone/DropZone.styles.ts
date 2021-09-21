@@ -94,17 +94,6 @@ export const Overlay = styled.div`
     left: 0;
 `;
 
-export const Close = styled.span`
-    position: absolute;
-    top: 12px;
-    right: 30px;
-    color: #f1f1f1;
-    font-size: 25px;
-    font-weight: bold;
-    transition: 0.3s;
-    cursor: pointer;
-  `;
-
 export const ModalImage = styled.div`
     position: absolute;
     top: 50%;
@@ -120,4 +109,14 @@ export const ModalImage = styled.div`
     background-image: none;
 `;
 
+export const Close = styled.span`
+    position: absolute;
+    top: 12px;
+    right: 30px;
+    color: #f1f1f1;
+    font-size: 25px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+`;
 

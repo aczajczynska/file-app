@@ -9,6 +9,7 @@ import {
   SelectedFilesProps,
   SelectedFileProps,
 } from '../../../namespace/files';
+import Modal from '../../../ui-components/Modal';
 
 import {
   DropContent,
@@ -23,10 +24,6 @@ import {
   FileRemove,
   FileErrorMessage,
   FileType,
-  Modal,
-  Overlay,
-  Close,
-  ModalImage,
 } from './DropZone.styles';
 
 interface IProps {}
@@ -36,7 +33,7 @@ const DropZone: FC<IProps> = () => {
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [validFiles, setValidFiles] = useState<SelectedFilesProps>([]);
   const modalImageRef = useRef<HTMLDivElement>(null);
-  const modalRef = useRef<HTMLDivElement>(null);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const dragOver = (ev: any) => {
     ev.preventDefault();
@@ -97,11 +94,7 @@ const DropZone: FC<IProps> = () => {
     if (files.length) {
       handleFiles(files);
     }
-    console.log(files);
   };
-
-  console.log(selectedFiles, 'selectedFiles');
-  console.log(validFiles, 'validFiles');
 
   const fileSize = (size: number) => {
     if (size === 0) return '0 Bytes';
@@ -130,23 +123,24 @@ const DropZone: FC<IProps> = () => {
 
   const reader = new FileReader();
 
+  console.log(reader, 'READER');
+
   const openImageModal = (file: any) => {
-    if (null !== modalRef.current) {
-      modalRef.current.style.display = 'block';
-      reader.readAsDataURL(file);
-      reader.onload = function (e: any) {
-        if (null !== modalImageRef.current) {
-          modalImageRef.current.style.backgroundImage = `url(${e.target.result})`;
-        }
-      };
-    }
+    setIsOpen(true);
+    reader.readAsDataURL(file);
+    reader.onload = function (e: any) {
+      console.log(e, 'link');
+      if (null !== modalImageRef.current) {
+        modalImageRef.current.style.backgroundImage = `url(${e.target.result})`;
+      }
+    };
   };
 
   const closeModal = () => {
-    if (null !== modalRef.current && null !== modalImageRef.current) {
-      modalRef.current.style.display = 'none';
+    if (modalImageRef.current !== null) {
       modalImageRef.current.style.backgroundImage = 'none';
     }
+    setIsOpen(false);
   };
 
   return (
@@ -200,11 +194,11 @@ const DropZone: FC<IProps> = () => {
           </FileDisplayContainer>
         </Col>
       </Row>
-      <Modal ref={modalRef}>
-        <Overlay></Overlay>
-        <Close onClick={() => closeModal()}>X</Close>
-        <ModalImage ref={modalImageRef}></ModalImage>
-      </Modal>
+      <Modal
+        imageRef={modalImageRef}
+        open={isOpen}
+        onClose={() => closeModal()}
+      />
     </Container>
   );
 };

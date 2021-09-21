@@ -3,12 +3,13 @@ import { Txt } from './Text.styles';
 export interface TextProps {
   content: string;
   option: 'title' | 'subtitle' | 'content' | 'text';
+  center?: boolean;
 }
 
-const Text = ({ content, option, ...props }: TextProps) => {
+const Text = ({ center, content, option, ...props }: TextProps) => {
   return (
     <>
-      <Txt option={option} {...props}>
+      <Txt center={center} option={option} {...props}>
         {content}
       </Txt>
     </>

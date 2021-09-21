@@ -4,6 +4,7 @@ import { Themed } from 'namespace/theme';
 
 interface TextProps extends Themed {
   option: 'title' | 'subtitle' | 'content' | 'text';
+  center?: boolean;
 }
 
 export const Txt = styled.h1<TextProps>`
@@ -41,4 +42,9 @@ ${({ option, theme }: TextProps) =>
       font-size: ${theme.fontSize.tiny};
     `}
 
+    ${({ center }: TextProps) =>
+    center &&
+    css`
+        text-align: center;
+    `}
 `;
