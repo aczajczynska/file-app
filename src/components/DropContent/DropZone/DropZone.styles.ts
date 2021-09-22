@@ -6,7 +6,7 @@ export const DropContent = styled.div`
     justify-content: center;
     align-items: center;
     height: 200px;
-    border: 4px dashed ${({ theme }) => theme.colors.dodgerBlue};
+    border: 4px dashed ${({ theme }) => theme.colors.islandMoment};
 `;
 
 export const DropText = styled.p`

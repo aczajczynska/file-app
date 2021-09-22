@@ -12,7 +12,7 @@ const QAComponent = () => {
         <Row>
           <Col>
             <HeaderQAContainer>
-              <Text center option='title' content='Q&A Section' />
+              <Text center option='whiteTitle' content='Q&A Section' />
             </HeaderQAContainer>
           </Col>
         </Row>

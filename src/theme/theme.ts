@@ -2,6 +2,11 @@ const theme = {
     colors: {
         blueLight: "#8abbf5",
         dodgerBlue : "#1E90FF",
+        sari: "#E27D60",
+        beetrootRice: "#C38D9E",
+        orangeClay: "#E8A87C",
+        islandMoment: "#41B3A3",
+        surfWash: "#84cdc8",
         white: "#FFFFFF",
         black: "#000000",
         silverChalice: '#9f9f9f',

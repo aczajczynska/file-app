@@ -3,7 +3,7 @@ import { css } from 'styled-components';
 import { Themed } from 'namespace/theme';
 
 interface TextProps extends Themed {
-  option: 'title' | 'subtitle' | 'content' | 'text';
+  option: 'title' | 'subtitle' | 'content' | 'text' | 'whiteTitle';
   center?: boolean;
 }
 
@@ -18,13 +18,19 @@ export const Txt = styled.h1<TextProps>`
 ${({ option, theme }: TextProps) =>
     option === 'title' &&
     css`
-      color: ${theme.colors.dodgerBlue};
+      color: ${theme.colors.islandMoment};
+    `}
+
+     ${({ option, theme }: TextProps) =>
+    option === 'whiteTitle' &&
+    css`
+      color: ${theme.colors.white};
     `}
 
     ${({ option, theme }: TextProps) =>
     option === 'subtitle' &&
     css`
-      color: ${theme.colors.dodgerBlue};
+      color: ${theme.colors.islandMoment};
       font-size: ${theme.fontSize.huge};
     `}
 

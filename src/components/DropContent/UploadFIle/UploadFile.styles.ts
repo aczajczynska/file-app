@@ -9,7 +9,7 @@ export const UploadFileContaner = styled.div`
 `;
 
 export const Title = styled.h3`
-  color: ${({ theme }) => theme.colors.dodgerBlue};
+  color: ${({ theme }) => theme.colors.islandMoment};
   font-family: ${({ theme }) => theme.fontFamily.secondary};
   padding-bottom: 50px;
   padding-top: 50px;

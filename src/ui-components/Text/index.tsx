@@ -2,7 +2,7 @@ import { Txt } from './Text.styles';
 
 export interface TextProps {
   content: string;
-  option: 'title' | 'subtitle' | 'content' | 'text';
+  option: 'title' | 'subtitle' | 'content' | 'text' | 'whiteTitle';
   center?: boolean;
 }
 

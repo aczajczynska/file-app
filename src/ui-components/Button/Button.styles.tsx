@@ -14,10 +14,11 @@ export const ButtonComponent = styled.button`
   border-radius: 8px;
   width: 100%;
   cursor: pointer;
+  margin-bottom: ${({ theme }) => theme.spacing.minuscule};
 
   ${({ theme }: ButtonProps) =>
     css`
-      background-color: ${theme.colors.dodgerBlue};
+      background-color: ${theme.colors.islandMoment};
       color: ${theme.colors.white};
       font-weight: ${theme.fontWeight.regular};
       font-size: ${theme.fontSize.tinyXs};
