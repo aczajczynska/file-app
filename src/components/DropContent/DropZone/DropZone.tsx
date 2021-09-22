@@ -129,8 +129,7 @@ const DropZone: FC<IProps> = () => {
     setIsOpen(true);
     reader.readAsDataURL(file);
     reader.onload = function (e: any) {
-      console.log(e, 'link');
-      if (null !== modalImageRef.current) {
+      if (modalImageRef.current !== null) {
         modalImageRef.current.style.backgroundImage = `url(${e.target.result})`;
       }
     };
