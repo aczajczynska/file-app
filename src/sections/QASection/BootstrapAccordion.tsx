@@ -1,6 +1,4 @@
-import React, { FC } from 'react';
-// import Accordion from 'react-bootstrap/Accordion';
-import Text from '../../ui-components/Text';
+import { FC } from 'react';
 import { Accordion, Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 

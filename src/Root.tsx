@@ -4,15 +4,18 @@ import theme from 'theme/theme';
 import Layout from './components/Layout/Layout';
 
 function Root() {
-  const HeaderSection = lazy(() => import('sections/HeaderSection'));
-
+  const VideoSection = lazy(() => import('sections/VideoSecttion'));
   const AccordionSection = lazy(() => import('sections/QASection'));
+  const UploadFileSection = lazy(() => import('sections/UploadFileSection'));
 
   return (
     <ThemeProvider theme={theme}>
       <Layout>
         <Suspense fallback={<div>loading...</div>}>
-          <HeaderSection />
+          <VideoSection />
+        </Suspense>
+        <Suspense fallback={<div>loading...</div>}>
+          <UploadFileSection />
         </Suspense>
         <Suspense fallback={<div>loading...</div>}>
           <AccordionSection />
