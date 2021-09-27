@@ -32,6 +32,10 @@ ${({ option, theme }: TextProps) =>
     css`
       color: ${theme.colors.islandMoment};
       font-size: ${theme.fontSize.huge};
+
+      @media (max-width: 680px ) {
+      font-size: ${theme.fontSize.small};
+    }
     `}
 
      ${({ option, theme }: TextProps) =>
@@ -39,6 +43,10 @@ ${({ option, theme }: TextProps) =>
     css`
       color: ${theme.colors.black};
       font-size: ${theme.fontSize.small};
+
+      @media (max-width: 680px ) {
+      font-size: ${theme.fontSize.tiny};
+    }
     `}
 
     ${({ option, theme }: TextProps) =>

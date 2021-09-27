@@ -61,11 +61,11 @@ const DropZone: FC<IProps> = () => {
 
   const validateImgFile = (file: SelectedFileProps) => {
     const validTypes = [
-      'image/jpeg',
-      'image/jpg',
       'image/png',
       'image/gif',
       'image/x-icon',
+      'image/jpeg',
+      'image/jpg',
     ];
     if (validTypes.indexOf(file.type) === -1) {
       return false;
@@ -76,13 +76,10 @@ const DropZone: FC<IProps> = () => {
   const handleFiles = (files: SelectedFilesProps) => {
     for (let i = 0; i < files.length; i++) {
       if (validateImgFile(files[i])) {
-        // add to an array so we can display the name of file
         setSelectedFiles((prevArray: any) => [...prevArray, files[i]]);
       } else {
         setErrorMessage('File type not permitted');
-        // add a new property called invalid
         files[i]['invalid'] = true;
-        // add to the same array so we can display the name of the file
         setSelectedFiles((prevArray: any) => [...prevArray, files[i]]);
       }
     }
@@ -96,22 +93,22 @@ const DropZone: FC<IProps> = () => {
     }
   };
 
-  const fileSize = (size: number) => {
+  const checkFileSize = (size: number) => {
     if (size === 0) return '0 Bytes';
-    const k = 1024;
     const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+    const k = 1024;
     const i = Math.floor(Math.log(size) / Math.log(k));
     return parseFloat((size / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
   };
 
-  const fileType = (fileName: string) => {
+  const initializeFileType = (fileName: string) => {
     return (
       fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length) ||
       fileName
     );
   };
 
-  const removeFile = (name: string) => {
+  const removeFileImage = (name: string) => {
     const validFileIndex = validFiles.findIndex((e) => e.name === name);
     validFiles.splice(validFileIndex, 1);
     setValidFiles([...validFiles]); //update
@@ -171,20 +168,20 @@ const DropZone: FC<IProps> = () => {
                     onClick={
                       !data.invalid
                         ? () => openImageModal(data)
-                        : () => removeFile(data.name)
+                        : () => removeFileImage(data.name)
                     }
                   >
                     <FileInfo>
                       <FileTypeLogo src={File} />
                       <FileName>{data.name}</FileName>
-                      <FileType>{fileType(data.name)}</FileType>
-                      <FileSize>{fileSize(data.size)}</FileSize>
+                      <FileType>{initializeFileType(data.name)}</FileType>
+                      <FileSize>{checkFileSize(data.size)}</FileSize>
                       {data.invalid && (
                         <FileErrorMessage>{errorMessage}</FileErrorMessage>
                       )}
                     </FileInfo>
                   </div>
-                  <FileRemove onClick={() => removeFile(data.name)}>
+                  <FileRemove onClick={() => removeFileImage(data.name)}>
                     X
                   </FileRemove>
                 </>

@@ -7,7 +7,7 @@ export const Header = (): JSX.Element => {
     <Container>
       <Row>
         <Col>
-          <HeaderText>Keep your memories</HeaderText>
+          <HeaderText>Keep your memories and moments</HeaderText>
         </Col>
       </Row>
     </Container>
