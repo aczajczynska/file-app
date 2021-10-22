@@ -4,6 +4,7 @@ import Upload from '../../../assets/images/upload.png';
 
 import { Container, Row, Col } from 'react-bootstrap';
 import { Button } from '../../../ui-components/Button';
+import Text from '../../../ui-components/Text';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   SelectedFilesProps,
@@ -32,6 +33,9 @@ const DropZone: FC<IProps> = () => {
   const [selectedFiles, setSelectedFiles] = useState<SelectedFilesProps>([]);
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [validFiles, setValidFiles] = useState<SelectedFilesProps>([]);
+  const [unsupportedFiles, setUnsupportedFiles] = useState<SelectedFilesProps>(
+    [],
+  );
   const modalImageRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -81,6 +85,7 @@ const DropZone: FC<IProps> = () => {
         setErrorMessage('File type not permitted');
         files[i]['invalid'] = true;
         setSelectedFiles((prevArray: any) => [...prevArray, files[i]]);
+        setUnsupportedFiles((prevArray: any) => [...prevArray, files[i]]);
       }
     }
   };
@@ -116,6 +121,15 @@ const DropZone: FC<IProps> = () => {
     const selectedFileIndex = selectedFiles.findIndex((e) => e.name === name);
     selectedFiles.splice(selectedFileIndex, 1);
     setSelectedFiles([...selectedFiles]); //update
+
+    const unsupportedFileIndex = unsupportedFiles.findIndex(
+      (e) => e.name === name,
+    );
+    if (unsupportedFileIndex !== -1) {
+      unsupportedFiles.splice(unsupportedFileIndex, 1);
+      // update unsupportedFiles array
+      setUnsupportedFiles([...unsupportedFiles]);
+    }
   };
 
   const reader = new FileReader();
@@ -142,9 +156,15 @@ const DropZone: FC<IProps> = () => {
   return (
     <Container>
       <Row>
-        <Col xs={2}>
-          <Button label='Upload' />
-        </Col>
+        {unsupportedFiles.length === 0 ? (
+          <Col xs={2}>
+            <Button label='Upload' />
+          </Col>
+        ) : (
+          <Col>
+            <Text content='Unproper files droped' center option='subtitle' />
+          </Col>
+        )}
       </Row>
       <Row>
         <Col>
