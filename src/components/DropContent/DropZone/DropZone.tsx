@@ -25,6 +25,7 @@ import {
   FileRemove,
   FileErrorMessage,
   FileType,
+  FileInput,
 } from './DropZone.styles';
 
 interface IProps {}
@@ -38,6 +39,7 @@ const DropZone: FC<IProps> = () => {
   );
   const modalImageRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  // const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const dragOver = (ev: any) => {
     ev.preventDefault();
@@ -153,16 +155,30 @@ const DropZone: FC<IProps> = () => {
     setIsOpen(false);
   };
 
+  // const fileInputClicked = () => {
+  //   if (fileInputRef.current !== null) {
+  //     fileInputRef.current.click();
+  //   }
+  // };
+
+  // const filesSelected = () => {
+  //   if (fileInputRef.current !== null) {
+  //     handleFiles(fileInputRef.current.files);
+  //   }
+  // };
+
+  const uploadFiles = () => {};
+
   return (
     <Container>
       <Row>
         {unsupportedFiles.length === 0 ? (
           <Col xs={2}>
-            <Button label='Upload' />
+            <Button label='Upload' onClick={() => uploadFiles()} />
           </Col>
         ) : (
           <Col>
-            <Text content='Unproper files droped' center option='subtitle' />
+            <Text content='Wrong file was selected' center option='subtitle' />
           </Col>
         )}
       </Row>
@@ -173,11 +189,18 @@ const DropZone: FC<IProps> = () => {
             onDragEnter={dragEnter}
             onDragLeave={dragLeave}
             onDrop={fileDrop}
+            // onClick={fileInputClicked}
           >
             <UploadImg src={Upload} />
             <DropText>
               Drag and Drop files here or click to select files.
             </DropText>
+            {/* <FileInput
+              type='file'
+              multiple
+              ref={fileInputRef}
+              onChange={filesSelected}
+            /> */}
           </DropContent>
 
           <FileDisplayContainer>

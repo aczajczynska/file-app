@@ -17,6 +17,10 @@ export const DropText = styled.p`
     };
 `;
 
+export const FileInput = styled.input`
+    display: none;
+`
+
 export const UploadImg = styled.img`
   width: 50px;
   height: 50px;
@@ -76,6 +80,7 @@ export const FileErrorMessage = styled(FileName)`
 export const FileRemove = styled.div`
   cursor: pointer;
 `;
+
 
 // modal
 

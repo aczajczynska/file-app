@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { Accordion, Card } from 'react-bootstrap';
+import Pagination from './../../ui-components/Pagination';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const BootstrapAccordion: FC = () => {
@@ -69,6 +70,7 @@ const BootstrapAccordion: FC = () => {
           </Card>
         </Accordion>
       </div>
+      <Pagination totalValue={5} currentValue={2} />
     </>
   );
 };
