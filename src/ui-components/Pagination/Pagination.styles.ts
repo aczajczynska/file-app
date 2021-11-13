@@ -38,7 +38,7 @@ export const PaginationContent = styled.div<PaginationContentProps>`
       border: 2px solid ${theme.colors.blueLight};
       border-radius: 50%;
       background: ${theme.colors.blueLight};
-      width: 30px;
-      height: 30px;
+      width: 8px;
+      height: 8px;
     `}
 `
