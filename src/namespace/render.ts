@@ -5,3 +5,10 @@ export type RenderType =
   | null
   | JSX.Element
   | Array<RenderType>;
+
+  export interface WithChildrenProps {
+  children: RenderType;
+}
+export interface WithExcludedChildrenProps {
+  children?: never;
+}
