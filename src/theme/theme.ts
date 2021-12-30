@@ -10,6 +10,7 @@ const theme = {
     white: "#FFFFFF",
     blueGrey: "#D5D8E3",
     greyLight: "#FBFBFB",
+    blueSolitude: "#E7EAF4",
     black: "#000000",
     silverChalice: "#9f9f9f",
     silver: "#bfbfbf",
