@@ -1,4 +1,7 @@
 import React, { useState, ChangeEvent } from "react";
+import IconUp from "../../assets/images/arrow-up.png";
+import IconDown from "../../assets/images/arrow-down.png";
+
 import {
   Container,
   DropdownSection,
@@ -25,7 +28,12 @@ export const Dropdown = ({ values, onSelect, ...props }: DropdownProps) => {
   return (
     <Container>
       <InputWrapper>
-        <StyledInput {...props} onBlur={closeDropdown} onFocus={openDropdown} />
+        <StyledInput
+          {...props}
+          icon={isShown ? IconDown : IconUp}
+          onBlur={closeDropdown}
+          onFocus={openDropdown}
+        />
       </InputWrapper>
       {values.length > 0 && (
         <DropdownSection aria-expanded={isShown}>

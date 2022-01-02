@@ -54,6 +54,8 @@ export const InputWrapper = styled.div`
 export const Icon = styled.img`
   position: absolute;
   right: 12px;
+  width: 10px;
+  height: 8px;
   cursor: pointer;
 `;
 

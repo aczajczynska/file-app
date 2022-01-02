@@ -1,19 +1,18 @@
-import { FC } from 'react';
-import { Accordion, Card } from 'react-bootstrap';
-import Pagination from './../../ui-components/Pagination';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { FC } from "react";
+import { Accordion, Card } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const BootstrapAccordion: FC = () => {
   return (
     <>
       <div>
-        <Accordion defaultActiveKey='2'>
+        <Accordion defaultActiveKey="2">
           <Card>
-            <Accordion.Toggle as={Card.Header} eventKey='0'>
+            <Accordion.Toggle as={Card.Header} eventKey="0">
               How to save photos?
             </Accordion.Toggle>
 
-            <Accordion.Collapse eventKey='0'>
+            <Accordion.Collapse eventKey="0">
               <Card.Body>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -27,11 +26,11 @@ const BootstrapAccordion: FC = () => {
           </Card>
 
           <Card>
-            <Accordion.Toggle as={Card.Header} eventKey='1'>
+            <Accordion.Toggle as={Card.Header} eventKey="1">
               How to find a place to develop photos, a photographer?
             </Accordion.Toggle>
 
-            <Accordion.Collapse eventKey='1'>
+            <Accordion.Collapse eventKey="1">
               <Card.Body>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -45,11 +44,11 @@ const BootstrapAccordion: FC = () => {
           </Card>
 
           <Card>
-            <Accordion.Toggle as={Card.Header} eventKey='2'>
+            <Accordion.Toggle as={Card.Header} eventKey="2">
               How to understand women?
             </Accordion.Toggle>
 
-            <Accordion.Collapse eventKey='2'>
+            <Accordion.Collapse eventKey="2">
               <Card.Body>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -70,7 +69,6 @@ const BootstrapAccordion: FC = () => {
           </Card>
         </Accordion>
       </div>
-      <Pagination totalValue={5} currentValue={2} />
     </>
   );
 };
