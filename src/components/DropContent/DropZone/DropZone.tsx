@@ -1,16 +1,16 @@
-import { FC, useState, useEffect, useRef } from 'react';
-import File from '../../../assets/images/file.png';
-import Upload from '../../../assets/images/upload.png';
+import { FC, useState, useEffect, useRef } from "react";
+import File from "../../../assets/images/file.png";
+import Upload from "../../../assets/images/upload.png";
 
-import { Container, Row, Col } from 'react-bootstrap';
-import { Button } from '../../../ui-components/Button';
-import Text from '../../../ui-components/Text';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container, Row, Col } from "react-bootstrap";
+import { Button } from "../../../ui-components/Button";
+import Text from "../../../ui-components/Text";
+import "bootstrap/dist/css/bootstrap.min.css";
 import {
   SelectedFilesProps,
   SelectedFileProps,
-} from '../../../namespace/files';
-import Modal from '../../../ui-components/Modal';
+} from "../../../namespace/files";
+import Modal from "../../../ui-components/Modal";
 
 import {
   DropContent,
@@ -26,20 +26,22 @@ import {
   FileErrorMessage,
   FileType,
   FileInput,
-} from './DropZone.styles';
+} from "./DropZone.styles";
 
 interface IProps {}
 
 const DropZone: FC<IProps> = () => {
   const [selectedFiles, setSelectedFiles] = useState<SelectedFilesProps>([]);
-  const [errorMessage, setErrorMessage] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const [validFiles, setValidFiles] = useState<SelectedFilesProps>([]);
   const [unsupportedFiles, setUnsupportedFiles] = useState<SelectedFilesProps>(
-    [],
+    []
   );
   const modalImageRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   // const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  console.log(selectedFiles, "selectedFiles");
 
   const dragOver = (ev: any) => {
     ev.preventDefault();
@@ -55,8 +57,8 @@ const DropZone: FC<IProps> = () => {
 
   useEffect(() => {
     let filteredArray = selectedFiles.reduce((file: any, current: any) => {
-      const x = file.find((item: any) => item.name === current.name);
-      if (!x) {
+      const el = file.find((item: any) => item.name === current.name);
+      if (!el) {
         return file.concat([current]);
       } else {
         return file;
@@ -67,11 +69,11 @@ const DropZone: FC<IProps> = () => {
 
   const validateImgFile = (file: SelectedFileProps) => {
     const validTypes = [
-      'image/png',
-      'image/gif',
-      'image/x-icon',
-      'image/jpeg',
-      'image/jpg',
+      "image/png",
+      "image/gif",
+      "image/x-icon",
+      "image/jpeg",
+      "image/jpg",
     ];
     if (validTypes.indexOf(file.type) === -1) {
       return false;
@@ -84,8 +86,8 @@ const DropZone: FC<IProps> = () => {
       if (validateImgFile(files[i])) {
         setSelectedFiles((prevArray: any) => [...prevArray, files[i]]);
       } else {
-        setErrorMessage('File type not permitted');
-        files[i]['invalid'] = true;
+        setErrorMessage("File type not permitted");
+        files[i]["invalid"] = true;
         setSelectedFiles((prevArray: any) => [...prevArray, files[i]]);
         setUnsupportedFiles((prevArray: any) => [...prevArray, files[i]]);
       }
@@ -101,16 +103,16 @@ const DropZone: FC<IProps> = () => {
   };
 
   const checkFileSize = (size: number) => {
-    if (size === 0) return '0 Bytes';
-    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+    if (size === 0) return "0 Bytes";
+    const sizes = ["Bytes", "KB", "MB", "GB", "TB"];
     const k = 1024;
     const i = Math.floor(Math.log(size) / Math.log(k));
-    return parseFloat((size / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    return parseFloat((size / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
   };
 
   const initializeFileType = (fileName: string) => {
     return (
-      fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length) ||
+      fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length) ||
       fileName
     );
   };
@@ -125,7 +127,7 @@ const DropZone: FC<IProps> = () => {
     setSelectedFiles([...selectedFiles]); //update
 
     const unsupportedFileIndex = unsupportedFiles.findIndex(
-      (e) => e.name === name,
+      (e) => e.name === name
     );
     if (unsupportedFileIndex !== -1) {
       unsupportedFiles.splice(unsupportedFileIndex, 1);
@@ -136,7 +138,7 @@ const DropZone: FC<IProps> = () => {
 
   const reader = new FileReader();
 
-  console.log(reader, 'READER');
+  console.log(reader, "READER");
 
   const openImageModal = (file: any) => {
     setIsOpen(true);
@@ -150,7 +152,7 @@ const DropZone: FC<IProps> = () => {
 
   const closeModal = () => {
     if (modalImageRef.current !== null) {
-      modalImageRef.current.style.backgroundImage = 'none';
+      modalImageRef.current.style.backgroundImage = "none";
     }
     setIsOpen(false);
   };
@@ -174,11 +176,11 @@ const DropZone: FC<IProps> = () => {
       <Row>
         {unsupportedFiles.length === 0 ? (
           <Col xs={2}>
-            <Button label='Upload' onClick={() => uploadFiles()} />
+            <Button label="Upload" onClick={() => uploadFiles()} />
           </Col>
         ) : (
           <Col>
-            <Text content='Wrong file was selected' center option='subtitle' />
+            <Text content="Wrong file was selected" center option="subtitle" />
           </Col>
         )}
       </Row>

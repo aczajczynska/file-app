@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import ReactDom from "react-dom";
 import { ModalContainer, Overlay, Close, ModalImage } from "./Modal.styles";
 
@@ -9,14 +8,6 @@ interface ModalProps {
 }
 
 const Modal = ({ open, onClose, imageRef }: ModalProps) => {
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, []);
-
   if (!open) return null;
 
   return ReactDom.createPortal(
