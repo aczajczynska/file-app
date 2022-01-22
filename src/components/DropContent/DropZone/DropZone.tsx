@@ -11,6 +11,7 @@ import {
   SelectedFileProps,
 } from "../../../namespace/files";
 import Modal from "../../../ui-components/Modal";
+// import { apiKey } from "./helpers";
 
 import {
   DropContent,
@@ -25,7 +26,7 @@ import {
   FileRemove,
   FileErrorMessage,
   FileType,
-  FileInput,
+  // FileInput,
 } from "./DropZone.styles";
 
 interface IProps {}
@@ -39,9 +40,8 @@ const DropZone: FC<IProps> = () => {
   );
   const modalImageRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  // const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  console.log(selectedFiles, "selectedFiles");
+  console.log(validFiles, "validFiles");
 
   const dragOver = (ev: any) => {
     ev.preventDefault();
@@ -103,11 +103,15 @@ const DropZone: FC<IProps> = () => {
   };
 
   const checkFileSize = (size: number) => {
-    if (size === 0) return "0 Bytes";
-    const sizes = ["Bytes", "KB", "MB", "GB", "TB"];
-    const k = 1024;
-    const i = Math.floor(Math.log(size) / Math.log(k));
-    return parseFloat((size / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
+    if (size === 0) return "0 bytes";
+    const sizes = ["bytes", "KB", "MB", "GB", "TB"];
+    const value = 1024;
+    const calculations = Math.floor(Math.log(size) / Math.log(value));
+    return (
+      parseFloat((size / Math.pow(value, calculations)).toFixed(2)) +
+      " " +
+      sizes[calculations]
+    );
   };
 
   const initializeFileType = (fileName: string) => {
@@ -120,18 +124,17 @@ const DropZone: FC<IProps> = () => {
   const removeFileImage = (name: string) => {
     const validFileIndex = validFiles.findIndex((e) => e.name === name);
     validFiles.splice(validFileIndex, 1);
-    setValidFiles([...validFiles]); //update
+    setValidFiles([...validFiles]);
 
     const selectedFileIndex = selectedFiles.findIndex((e) => e.name === name);
     selectedFiles.splice(selectedFileIndex, 1);
-    setSelectedFiles([...selectedFiles]); //update
+    setSelectedFiles([...selectedFiles]);
 
     const unsupportedFileIndex = unsupportedFiles.findIndex(
       (e) => e.name === name
     );
     if (unsupportedFileIndex !== -1) {
       unsupportedFiles.splice(unsupportedFileIndex, 1);
-      // update unsupportedFiles array
       setUnsupportedFiles([...unsupportedFiles]);
     }
   };
@@ -157,26 +160,16 @@ const DropZone: FC<IProps> = () => {
     setIsOpen(false);
   };
 
-  // const fileInputClicked = () => {
-  //   if (fileInputRef.current !== null) {
-  //     fileInputRef.current.click();
-  //   }
-  // };
-
-  // const filesSelected = () => {
-  //   if (fileInputRef.current !== null) {
-  //     handleFiles(fileInputRef.current.files);
-  //   }
-  // };
-
-  const uploadFiles = () => {};
+  const uploadFiles = () => {
+    console.log("upload");
+  };
 
   return (
     <Container>
       <Row>
         {unsupportedFiles.length === 0 ? (
           <Col xs={2}>
-            <Button label="Upload" onClick={() => uploadFiles()} />
+            <Button label="Upload" onClick={uploadFiles} />
           </Col>
         ) : (
           <Col>
@@ -197,12 +190,6 @@ const DropZone: FC<IProps> = () => {
             <DropText>
               Drag and Drop files here or click to select files.
             </DropText>
-            {/* <FileInput
-              type='file'
-              multiple
-              ref={fileInputRef}
-              onChange={filesSelected}
-            /> */}
           </DropContent>
 
           <FileDisplayContainer>
