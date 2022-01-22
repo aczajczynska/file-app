@@ -41,6 +41,7 @@ const DropZone: FC<IProps> = () => {
   const modalImageRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
+  console.log(validFiles[0]?.lastModifiedDate, "validFiles one");
   console.log(validFiles, "validFiles");
 
   const dragOver = (ev: any) => {
@@ -168,7 +169,7 @@ const DropZone: FC<IProps> = () => {
     <Container>
       <Row>
         {unsupportedFiles.length === 0 ? (
-          <Col xs={2}>
+          <Col xs={3}>
             <Button label="Upload" onClick={uploadFiles} />
           </Col>
         ) : (
@@ -208,6 +209,7 @@ const DropZone: FC<IProps> = () => {
                       <FileName>{data.name}</FileName>
                       <FileType>{initializeFileType(data.name)}</FileType>
                       <FileSize>{checkFileSize(data.size)}</FileSize>
+                      <FileName>{data.lastModified}</FileName>
                       {data.invalid && (
                         <FileErrorMessage>{errorMessage}</FileErrorMessage>
                       )}
