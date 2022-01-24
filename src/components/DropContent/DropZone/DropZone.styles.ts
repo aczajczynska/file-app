@@ -17,9 +17,7 @@ export const DropText = styled.p`
   }
 `;
 
-export const FileInput = styled.input`
-  display: none;
-`;
+export const FileInput = styled.input``;
 
 export const UploadImg = styled.img`
   width: 50px;

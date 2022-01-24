@@ -1,10 +1,18 @@
-import { FC, useState, useEffect, useRef, FormEvent } from "react";
+import React, {
+  FC,
+  useState,
+  useEffect,
+  useRef,
+  FormEvent,
+  useContext,
+} from "react";
 import File from "../../../assets/images/file.png";
 import Upload from "../../../assets/images/upload.png";
 
 import { Container, Row, Col } from "react-bootstrap";
 import { Button } from "../../../ui-components/Button";
 import Text from "../../../ui-components/Text";
+import { FilesToUploadContext } from "context/filesToUpload";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
   SelectedFilesProps,
@@ -12,7 +20,6 @@ import {
 } from "../../../namespace/files";
 import Modal from "../../../ui-components/Modal";
 import { ISOToDate } from "helpers/time";
-// import { apiKey } from "./helpers";
 
 import {
   DropContent,
@@ -27,23 +34,22 @@ import {
   FileRemove,
   FileErrorMessage,
   FileType,
-  // FileInput,
+  FileInput,
 } from "./DropZone.styles";
 
 interface IProps {}
 
 const DropZone: FC<IProps> = () => {
+  const { setFilesList } = useContext(FilesToUploadContext);
   const [selectedFiles, setSelectedFiles] = useState<SelectedFilesProps>([]);
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const [validFiles, setValidFiles] = useState<SelectedFilesProps>([]);
+  const [validFiles, setValidFiles] = useState<any>([]);
   const [unsupportedFiles, setUnsupportedFiles] = useState<SelectedFilesProps>(
     []
   );
   const modalImageRef = useRef<HTMLDivElement>(null);
+  const fileSpaceRef = useRef<HTMLInputElement | null>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
-
-  console.log(validFiles[0]?.lastModifiedDate, "validFiles one");
-  console.log(validFiles, "validFiles");
 
   const dragOver = (ev: FormEvent) => {
     ev.preventDefault();
@@ -70,20 +76,14 @@ const DropZone: FC<IProps> = () => {
   }, [selectedFiles]);
 
   const validateImgFile = (file: SelectedFileProps) => {
-    const validTypes = [
-      "image/png",
-      "image/gif",
-      "image/x-icon",
-      "image/jpeg",
-      "image/jpg",
-    ];
+    const validTypes = ["image/png", "image/gif", "image/jpeg", "image/jpg"];
     if (validTypes.indexOf(file.type) === -1) {
       return false;
     }
     return true;
   };
 
-  const handleFiles = (files: SelectedFilesProps) => {
+  const manageFiles = (files: any) => {
     for (let i = 0; i < files.length; i++) {
       if (validateImgFile(files[i])) {
         setSelectedFiles((prevArray: any) => [...prevArray, files[i]]);
@@ -100,7 +100,7 @@ const DropZone: FC<IProps> = () => {
     ev.preventDefault();
     const files = ev.dataTransfer.files;
     if (files.length) {
-      handleFiles(files);
+      manageFiles(files);
     }
   };
 
@@ -124,7 +124,9 @@ const DropZone: FC<IProps> = () => {
   };
 
   const removeFileImage = (name: string) => {
-    const validFileIndex = validFiles.findIndex((e) => e.name === name);
+    const validFileIndex = validFiles.findIndex(
+      (e: { name: string }) => e.name === name
+    );
     validFiles.splice(validFileIndex, 1);
     setValidFiles([...validFiles]);
 
@@ -153,6 +155,10 @@ const DropZone: FC<IProps> = () => {
     };
   };
 
+  const saveFiles = () => {
+    setFilesList(validFiles);
+  };
+
   const closeModal = () => {
     if (modalImageRef.current !== null) {
       modalImageRef.current.style.backgroundImage = "none";
@@ -160,23 +166,46 @@ const DropZone: FC<IProps> = () => {
     setIsOpen(false);
   };
 
-  const uploadFiles = () => {
-    console.log("upload");
+  const uploadImage = () => {
+    validFiles.forEach((file: any) => {
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", "fo659k1t");
+
+      fetch("https://api.cloudinary.com/v1_1/choczname/image/upload", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          console.log("Success:", result);
+          setValidFiles([]);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    });
   };
 
-  const saveFiles = () => {
-    console.log("savefiles");
-  };
   return (
     <Container>
       <Row>
         {unsupportedFiles.length === 0 ? (
           <>
             <Col xs={3}>
-              <Button label="Upload" onClick={uploadFiles} />
+              <Button label="Upload" onClick={uploadImage} />
             </Col>
             <Col xs={3}>
               <Button label="Save" onClick={saveFiles} />
+            </Col>
+            <Col xs={3}>
+              <FileInput
+                ref={fileSpaceRef}
+                type="file"
+                onChange={(event) => {
+                  manageFiles(event.target.files);
+                }}
+              ></FileInput>
             </Col>
           </>
         ) : (

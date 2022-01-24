@@ -34,8 +34,6 @@ const VideoSection: FC = () => {
     }
   };
 
-  console.log(audio, "moje audtio");
-
   return (
     <>
       <VideoContainer>
