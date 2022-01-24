@@ -1,16 +1,25 @@
-import { FC, useState, useEffect, useRef } from 'react';
-import File from '../../../assets/images/file.png';
-import Upload from '../../../assets/images/upload.png';
+import React, {
+  FC,
+  useState,
+  useEffect,
+  useRef,
+  FormEvent,
+  useContext,
+} from "react";
+import File from "../../../assets/images/file.png";
+import Upload from "../../../assets/images/upload.png";
 
-import { Container, Row, Col } from 'react-bootstrap';
-import { Button } from '../../../ui-components/Button';
-import Text from '../../../ui-components/Text';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container, Row, Col } from "react-bootstrap";
+import { Button } from "../../../ui-components/Button";
+import Text from "../../../ui-components/Text";
+import { FilesToUploadContext } from "context/filesToUpload";
+import "bootstrap/dist/css/bootstrap.min.css";
 import {
   SelectedFilesProps,
   SelectedFileProps,
-} from '../../../namespace/files';
-import Modal from '../../../ui-components/Modal';
+} from "../../../namespace/files";
+import Modal from "../../../ui-components/Modal";
+import { ISOToDate } from "helpers/time";
 
 import {
   DropContent,
@@ -26,37 +35,38 @@ import {
   FileErrorMessage,
   FileType,
   FileInput,
-} from './DropZone.styles';
+} from "./DropZone.styles";
 
 interface IProps {}
 
 const DropZone: FC<IProps> = () => {
+  const { setFilesList } = useContext(FilesToUploadContext);
   const [selectedFiles, setSelectedFiles] = useState<SelectedFilesProps>([]);
-  const [errorMessage, setErrorMessage] = useState<string>('');
-  const [validFiles, setValidFiles] = useState<SelectedFilesProps>([]);
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [validFiles, setValidFiles] = useState<any>([]);
   const [unsupportedFiles, setUnsupportedFiles] = useState<SelectedFilesProps>(
-    [],
+    []
   );
   const modalImageRef = useRef<HTMLDivElement>(null);
+  const fileSpaceRef = useRef<HTMLInputElement | null>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  // const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  const dragOver = (ev: any) => {
+  const dragOver = (ev: FormEvent) => {
     ev.preventDefault();
   };
 
-  const dragEnter = (ev: any) => {
+  const dragEnter = (ev: FormEvent) => {
     ev.preventDefault();
   };
 
-  const dragLeave = (ev: any) => {
+  const dragLeave = (ev: FormEvent) => {
     ev.preventDefault();
   };
 
   useEffect(() => {
     let filteredArray = selectedFiles.reduce((file: any, current: any) => {
-      const x = file.find((item: any) => item.name === current.name);
-      if (!x) {
+      const el = file.find((item: any) => item.name === current.name);
+      if (!el) {
         return file.concat([current]);
       } else {
         return file;
@@ -66,26 +76,20 @@ const DropZone: FC<IProps> = () => {
   }, [selectedFiles]);
 
   const validateImgFile = (file: SelectedFileProps) => {
-    const validTypes = [
-      'image/png',
-      'image/gif',
-      'image/x-icon',
-      'image/jpeg',
-      'image/jpg',
-    ];
+    const validTypes = ["image/png", "image/gif", "image/jpeg", "image/jpg"];
     if (validTypes.indexOf(file.type) === -1) {
       return false;
     }
     return true;
   };
 
-  const handleFiles = (files: SelectedFilesProps) => {
+  const manageFiles = (files: any) => {
     for (let i = 0; i < files.length; i++) {
       if (validateImgFile(files[i])) {
         setSelectedFiles((prevArray: any) => [...prevArray, files[i]]);
       } else {
-        setErrorMessage('File type not permitted');
-        files[i]['invalid'] = true;
+        setErrorMessage("Wrong file type");
+        files[i]["invalid"] = true;
         setSelectedFiles((prevArray: any) => [...prevArray, files[i]]);
         setUnsupportedFiles((prevArray: any) => [...prevArray, files[i]]);
       }
@@ -96,47 +100,50 @@ const DropZone: FC<IProps> = () => {
     ev.preventDefault();
     const files = ev.dataTransfer.files;
     if (files.length) {
-      handleFiles(files);
+      manageFiles(files);
     }
   };
 
   const checkFileSize = (size: number) => {
-    if (size === 0) return '0 Bytes';
-    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-    const k = 1024;
-    const i = Math.floor(Math.log(size) / Math.log(k));
-    return parseFloat((size / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    if (size === 0) return "0 bytes";
+    const sizes = ["bytes", "KB", "MB", "GB", "TB"];
+    const value = 1024;
+    const calculations = Math.floor(Math.log(size) / Math.log(value));
+    return (
+      parseFloat((size / Math.pow(value, calculations)).toFixed(2)) +
+      " " +
+      sizes[calculations]
+    );
   };
 
   const initializeFileType = (fileName: string) => {
     return (
-      fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length) ||
+      fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length) ||
       fileName
     );
   };
 
   const removeFileImage = (name: string) => {
-    const validFileIndex = validFiles.findIndex((e) => e.name === name);
+    const validFileIndex = validFiles.findIndex(
+      (e: { name: string }) => e.name === name
+    );
     validFiles.splice(validFileIndex, 1);
-    setValidFiles([...validFiles]); //update
+    setValidFiles([...validFiles]);
 
     const selectedFileIndex = selectedFiles.findIndex((e) => e.name === name);
     selectedFiles.splice(selectedFileIndex, 1);
-    setSelectedFiles([...selectedFiles]); //update
+    setSelectedFiles([...selectedFiles]);
 
     const unsupportedFileIndex = unsupportedFiles.findIndex(
-      (e) => e.name === name,
+      (e) => e.name === name
     );
     if (unsupportedFileIndex !== -1) {
       unsupportedFiles.splice(unsupportedFileIndex, 1);
-      // update unsupportedFiles array
       setUnsupportedFiles([...unsupportedFiles]);
     }
   };
 
   const reader = new FileReader();
-
-  console.log(reader, 'READER');
 
   const openImageModal = (file: any) => {
     setIsOpen(true);
@@ -148,37 +155,62 @@ const DropZone: FC<IProps> = () => {
     };
   };
 
+  const saveFiles = () => {
+    setFilesList(validFiles);
+  };
+
   const closeModal = () => {
     if (modalImageRef.current !== null) {
-      modalImageRef.current.style.backgroundImage = 'none';
+      modalImageRef.current.style.backgroundImage = "none";
     }
     setIsOpen(false);
   };
 
-  // const fileInputClicked = () => {
-  //   if (fileInputRef.current !== null) {
-  //     fileInputRef.current.click();
-  //   }
-  // };
+  const uploadImage = () => {
+    validFiles.forEach((file: any) => {
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", "fo659k1t");
 
-  // const filesSelected = () => {
-  //   if (fileInputRef.current !== null) {
-  //     handleFiles(fileInputRef.current.files);
-  //   }
-  // };
-
-  const uploadFiles = () => {};
+      fetch("https://api.cloudinary.com/v1_1/choczname/image/upload", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          console.log("Success:", result);
+          setValidFiles([]);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    });
+  };
 
   return (
     <Container>
       <Row>
         {unsupportedFiles.length === 0 ? (
-          <Col xs={2}>
-            <Button label='Upload' onClick={() => uploadFiles()} />
-          </Col>
+          <>
+            <Col xs={3}>
+              <Button label="Upload" onClick={uploadImage} />
+            </Col>
+            <Col xs={3}>
+              <Button label="Save" onClick={saveFiles} />
+            </Col>
+            <Col xs={3}>
+              <FileInput
+                ref={fileSpaceRef}
+                type="file"
+                onChange={(event) => {
+                  manageFiles(event.target.files);
+                }}
+              ></FileInput>
+            </Col>
+          </>
         ) : (
           <Col>
-            <Text content='Wrong file was selected' center option='subtitle' />
+            <Text content="Wrong file was selected" center option="subtitle" />
           </Col>
         )}
       </Row>
@@ -189,18 +221,11 @@ const DropZone: FC<IProps> = () => {
             onDragEnter={dragEnter}
             onDragLeave={dragLeave}
             onDrop={fileDrop}
-            // onClick={fileInputClicked}
           >
             <UploadImg src={Upload} />
             <DropText>
               Drag and Drop files here or click to select files.
             </DropText>
-            {/* <FileInput
-              type='file'
-              multiple
-              ref={fileInputRef}
-              onChange={filesSelected}
-            /> */}
           </DropContent>
 
           <FileDisplayContainer>
@@ -219,6 +244,9 @@ const DropZone: FC<IProps> = () => {
                       <FileName>{data.name}</FileName>
                       <FileType>{initializeFileType(data.name)}</FileType>
                       <FileSize>{checkFileSize(data.size)}</FileSize>
+                      <FileName>
+                        Last modified: {ISOToDate(data.lastModified)}
+                      </FileName>
                       {data.invalid && (
                         <FileErrorMessage>{errorMessage}</FileErrorMessage>
                       )}
