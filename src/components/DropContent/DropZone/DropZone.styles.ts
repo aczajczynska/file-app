@@ -14,7 +14,7 @@ export const DropText = styled.p`
 
   @media (max-width: 580px) {
     font-size: 14px;
-  } ;
+  }
 `;
 
 export const FileInput = styled.input`
@@ -65,7 +65,7 @@ export const FileName = styled.span`
 
   @media (max-width: 580px) {
     font-size: 11px;
-  } ;
+  }
 `;
 
 export const FileType = styled(FileName)`

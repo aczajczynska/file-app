@@ -1,4 +1,4 @@
-import { FC, useState, useEffect, useRef } from "react";
+import { FC, useState, useEffect, useRef, FormEvent } from "react";
 import File from "../../../assets/images/file.png";
 import Upload from "../../../assets/images/upload.png";
 
@@ -11,6 +11,7 @@ import {
   SelectedFileProps,
 } from "../../../namespace/files";
 import Modal from "../../../ui-components/Modal";
+import { ISOToDate } from "helpers/time";
 // import { apiKey } from "./helpers";
 
 import {
@@ -44,15 +45,15 @@ const DropZone: FC<IProps> = () => {
   console.log(validFiles[0]?.lastModifiedDate, "validFiles one");
   console.log(validFiles, "validFiles");
 
-  const dragOver = (ev: any) => {
+  const dragOver = (ev: FormEvent) => {
     ev.preventDefault();
   };
 
-  const dragEnter = (ev: any) => {
+  const dragEnter = (ev: FormEvent) => {
     ev.preventDefault();
   };
 
-  const dragLeave = (ev: any) => {
+  const dragLeave = (ev: FormEvent) => {
     ev.preventDefault();
   };
 
@@ -87,7 +88,7 @@ const DropZone: FC<IProps> = () => {
       if (validateImgFile(files[i])) {
         setSelectedFiles((prevArray: any) => [...prevArray, files[i]]);
       } else {
-        setErrorMessage("File type not permitted");
+        setErrorMessage("Wrong file type");
         files[i]["invalid"] = true;
         setSelectedFiles((prevArray: any) => [...prevArray, files[i]]);
         setUnsupportedFiles((prevArray: any) => [...prevArray, files[i]]);
@@ -142,8 +143,6 @@ const DropZone: FC<IProps> = () => {
 
   const reader = new FileReader();
 
-  console.log(reader, "READER");
-
   const openImageModal = (file: any) => {
     setIsOpen(true);
     reader.readAsDataURL(file);
@@ -165,13 +164,21 @@ const DropZone: FC<IProps> = () => {
     console.log("upload");
   };
 
+  const saveFiles = () => {
+    console.log("savefiles");
+  };
   return (
     <Container>
       <Row>
         {unsupportedFiles.length === 0 ? (
-          <Col xs={3}>
-            <Button label="Upload" onClick={uploadFiles} />
-          </Col>
+          <>
+            <Col xs={3}>
+              <Button label="Upload" onClick={uploadFiles} />
+            </Col>
+            <Col xs={3}>
+              <Button label="Save" onClick={saveFiles} />
+            </Col>
+          </>
         ) : (
           <Col>
             <Text content="Wrong file was selected" center option="subtitle" />
@@ -185,7 +192,6 @@ const DropZone: FC<IProps> = () => {
             onDragEnter={dragEnter}
             onDragLeave={dragLeave}
             onDrop={fileDrop}
-            // onClick={fileInputClicked}
           >
             <UploadImg src={Upload} />
             <DropText>
@@ -209,7 +215,9 @@ const DropZone: FC<IProps> = () => {
                       <FileName>{data.name}</FileName>
                       <FileType>{initializeFileType(data.name)}</FileType>
                       <FileSize>{checkFileSize(data.size)}</FileSize>
-                      <FileName>{data.lastModified}</FileName>
+                      <FileName>
+                        Last modified: {ISOToDate(data.lastModified)}
+                      </FileName>
                       {data.invalid && (
                         <FileErrorMessage>{errorMessage}</FileErrorMessage>
                       )}
