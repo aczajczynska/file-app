@@ -13,12 +13,13 @@ import { Container, Row, Col } from "react-bootstrap";
 import { Button } from "../../../ui-components/Button";
 import Text from "../../../ui-components/Text";
 import { FilesToUploadContext } from "context/filesToUpload";
+import { BootstrapToast } from "components/Toast";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
   SelectedFilesProps,
   SelectedFileProps,
 } from "../../../namespace/files";
-import Modal from "../../../ui-components/Modal";
+import Modal from "ui-components/Modal";
 import { ISOToDate } from "helpers/time";
 
 import {
@@ -37,9 +38,11 @@ import {
   FileInput,
 } from "./DropZone.styles";
 
-interface IProps {}
+const preset = process.env.UPLOAD_PRESET;
 
-const DropZone: FC<IProps> = () => {
+interface Props {}
+
+const DropZone: FC<Props> = () => {
   const { setFilesList } = useContext(FilesToUploadContext);
   const [selectedFiles, setSelectedFiles] = useState<SelectedFilesProps>([]);
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -50,6 +53,9 @@ const DropZone: FC<IProps> = () => {
   const modalImageRef = useRef<HTMLDivElement>(null);
   const fileSpaceRef = useRef<HTMLInputElement | null>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [showToast, setShowToast] = useState(false);
+
+  const toggleShowTost = () => setShowToast(!showToast);
 
   const dragOver = (ev: FormEvent) => {
     ev.preventDefault();
@@ -170,7 +176,7 @@ const DropZone: FC<IProps> = () => {
     validFiles.forEach((file: any) => {
       const formData = new FormData();
       formData.append("file", file);
-      formData.append("upload_preset", "fo659k1t");
+      formData.append("upload_preset", preset);
 
       fetch("https://api.cloudinary.com/v1_1/choczname/image/upload", {
         method: "POST",
@@ -180,6 +186,7 @@ const DropZone: FC<IProps> = () => {
         .then((result) => {
           console.log("Success:", result);
           setValidFiles([]);
+          setShowToast(true);
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -196,7 +203,7 @@ const DropZone: FC<IProps> = () => {
               <Button label="Upload" onClick={uploadImage} />
             </Col>
             <Col xs={3}>
-              <Button label="Save" onClick={saveFiles} />
+              <Button label="Save and show" onClick={saveFiles} />
             </Col>
             <Col xs={3}>
               <FileInput
@@ -266,6 +273,7 @@ const DropZone: FC<IProps> = () => {
         open={isOpen}
         onClose={() => closeModal()}
       />
+      <BootstrapToast onClose={toggleShowTost} show={showToast} />
     </Container>
   );
 };
