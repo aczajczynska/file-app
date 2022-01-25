@@ -1,8 +1,6 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import "video.js/dist/video-js.css";
-// import Text from '../../ui-components/Text';
 import { helpers } from "./helpers";
-// import AudioAnalyser from '../../components/AudioAnalyser';
 import {
   VideoContainer,
   VideoContent,
@@ -11,29 +9,6 @@ import {
 } from "./VideoSection.styles";
 
 const VideoSection: FC = () => {
-  const [audio, setAudio] = useState<MediaStream | undefined>();
-
-  const getMicrophone = async () => {
-    const audioValue = await navigator.mediaDevices.getUserMedia({
-      audio: true,
-      video: false,
-    });
-    setAudio(audioValue);
-  };
-
-  const stopMicrophone = () => {
-    audio?.getTracks().forEach((track) => track.stop());
-    setAudio(undefined);
-  };
-
-  const toggleMicrophone = () => {
-    if (audio) {
-      stopMicrophone();
-    } else {
-      getMicrophone();
-    }
-  };
-
   return (
     <>
       <VideoContainer>
