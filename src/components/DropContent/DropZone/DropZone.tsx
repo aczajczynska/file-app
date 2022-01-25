@@ -6,14 +6,15 @@ import React, {
   FormEvent,
   useContext,
 } from "react";
-import File from "../../../assets/images/file.png";
-import Upload from "../../../assets/images/upload.png";
+import File from "assets/images/file.png";
+import Upload from "assets/images/upload.png";
 
 import { Container, Row, Col } from "react-bootstrap";
-import { Button } from "../../../ui-components/Button";
-import Text from "../../../ui-components/Text";
+import { Button } from "ui-components/Button";
+import Text from "ui-components/Text";
 import { FilesToUploadContext } from "context/filesToUpload";
 import { BootstrapToast } from "components/Toast";
+import { notificationComponent } from "components/Notification";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
   SelectedFilesProps,
@@ -169,6 +170,7 @@ const DropZone: FC = () => {
   };
 
   const uploadImage = () => {
+    const { showNotification } = notificationComponent();
     validFiles.forEach((file: any) => {
       const formData = new FormData();
       formData.append("file", file);
@@ -186,6 +188,7 @@ const DropZone: FC = () => {
         })
         .catch((error) => {
           console.error("Error:", error);
+          showNotification();
         });
     });
   };
