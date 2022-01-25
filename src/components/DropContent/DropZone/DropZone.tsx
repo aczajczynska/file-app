@@ -11,10 +11,12 @@ import Upload from "assets/images/upload.png";
 
 import { Container, Row, Col } from "react-bootstrap";
 import { Button } from "ui-components/Button";
+import { RModal } from "ui-components/RModal";
 import Text from "ui-components/Text";
 import { FilesToUploadContext } from "context/filesToUpload";
 import { BootstrapToast } from "components/Toast";
 import { notificationComponent } from "components/Notification";
+import { TableComponent } from "components/Table";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
   SelectedFilesProps,
@@ -40,7 +42,7 @@ import {
 } from "./DropZone.styles";
 
 const DropZone: FC = () => {
-  const { setFilesList } = useContext(FilesToUploadContext);
+  const { setFilesList, filesList } = useContext(FilesToUploadContext);
   const [selectedFiles, setSelectedFiles] = useState<SelectedFilesProps>([]);
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [validFiles, setValidFiles] = useState<any>([]);
@@ -50,6 +52,7 @@ const DropZone: FC = () => {
   const modalImageRef = useRef<HTMLDivElement>(null);
   const fileSpaceRef = useRef<HTMLInputElement | null>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isTableModalOpen, setIsTableModalOpen] = useState<boolean>(true);
   const [showToast, setShowToast] = useState(false);
 
   const toggleShowTost = () => setShowToast(!showToast);
@@ -160,6 +163,7 @@ const DropZone: FC = () => {
 
   const saveFiles = () => {
     setFilesList(validFiles);
+    setIsTableModalOpen(true);
   };
 
   const closeModal = () => {
@@ -192,6 +196,12 @@ const DropZone: FC = () => {
         });
     });
   };
+
+  const closeTableModal = () => {
+    setIsTableModalOpen(false);
+  };
+
+  console.log(filesList, "filesList");
 
   return (
     <Container>
@@ -273,6 +283,9 @@ const DropZone: FC = () => {
         onClose={() => closeModal()}
       />
       <BootstrapToast onClose={toggleShowTost} show={showToast} />
+      <RModal open={isTableModalOpen} onClose={() => closeTableModal()}>
+        <TableComponent />
+      </RModal>
     </Container>
   );
 };

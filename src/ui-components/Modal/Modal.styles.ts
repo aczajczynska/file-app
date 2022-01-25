@@ -9,7 +9,6 @@ export const ModalContainer = styled.div`
   padding: 50px;
   z-index: 1000;
   width: 50%;
-  width: 50%;
 `;
 
 export const ModalContent = styled.div`
