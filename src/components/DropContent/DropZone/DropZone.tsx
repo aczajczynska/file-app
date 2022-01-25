@@ -38,11 +38,7 @@ import {
   FileInput,
 } from "./DropZone.styles";
 
-const preset = process.env.UPLOAD_PRESET;
-
-interface Props {}
-
-const DropZone: FC<Props> = () => {
+const DropZone: FC = () => {
   const { setFilesList } = useContext(FilesToUploadContext);
   const [selectedFiles, setSelectedFiles] = useState<SelectedFilesProps>([]);
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -176,7 +172,7 @@ const DropZone: FC<Props> = () => {
     validFiles.forEach((file: any) => {
       const formData = new FormData();
       formData.append("file", file);
-      formData.append("upload_preset", preset);
+      formData.append("upload_preset", "fo659k1t");
 
       fetch("https://api.cloudinary.com/v1_1/choczname/image/upload", {
         method: "POST",
