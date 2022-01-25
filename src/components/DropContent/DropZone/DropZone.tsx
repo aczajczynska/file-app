@@ -201,8 +201,6 @@ const DropZone: FC = () => {
     setIsTableModalOpen(false);
   };
 
-  console.log(filesList, "filesList");
-
   return (
     <Container>
       <Row>
