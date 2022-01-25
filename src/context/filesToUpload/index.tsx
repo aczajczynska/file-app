@@ -6,7 +6,7 @@ export interface FilesToUploadContextTypes {
 }
 
 export const FilesToUploadContext = React.createContext({
-  filesList: {},
+  filesList: [],
   setFilesList: (_value: any) => {},
 });
 
