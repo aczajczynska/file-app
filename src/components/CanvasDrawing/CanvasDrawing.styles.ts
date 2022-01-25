@@ -1,14 +1,21 @@
 import styled from "theme/styled-components";
 
-export const DrawingContainer = styled.div`
+export const Container = styled.div`
   display: flex;
-  justify-content: center;
-  height: 50vh;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
-  margin-top: 20px;
+  height: 100%;
+  border: 2px solid red;
 
   @media (min-width: 768px) {
-    height: 65vh;
-    width: 100%;
+    /* height: 65vh;
+    width: 100%; */
   }
+`;
+
+export const CanvasSpace = styled.div`
+  border: 2px solid green;
+  width: 100%;
+  height: 80%;
 `;
