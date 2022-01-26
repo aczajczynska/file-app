@@ -42,7 +42,7 @@ import {
 } from "./DropZone.styles";
 
 const DropZone: FC = () => {
-  const { setFilesList, filesList } = useContext(FilesToUploadContext);
+  const { setFilesList } = useContext(FilesToUploadContext);
   const [selectedFiles, setSelectedFiles] = useState<SelectedFilesProps>([]);
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [validFiles, setValidFiles] = useState<any>([]);
@@ -52,7 +52,7 @@ const DropZone: FC = () => {
   const modalImageRef = useRef<HTMLDivElement>(null);
   const fileSpaceRef = useRef<HTMLInputElement | null>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [isTableModalOpen, setIsTableModalOpen] = useState<boolean>(true);
+  const [isTableModalOpen, setIsTableModalOpen] = useState<boolean>(false);
   const [showToast, setShowToast] = useState(false);
 
   const toggleShowTost = () => setShowToast(!showToast);
@@ -281,7 +281,7 @@ const DropZone: FC = () => {
         onClose={() => closeModal()}
       />
       <BootstrapToast onClose={toggleShowTost} show={showToast} />
-      <RModal open={isTableModalOpen} onClose={() => closeTableModal()}>
+      <RModal open={isTableModalOpen} onClose={closeTableModal}>
         <TableComponent />
       </RModal>
     </Container>
