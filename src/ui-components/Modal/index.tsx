@@ -11,7 +11,7 @@ const Modal = ({ open, onClose, imageRef }: ModalProps) => {
   if (!open) return null
 
   return ReactDom.createPortal(
-    <Overlay>
+    <Overlay data-testid="image-modal">
       <Close onClick={onClose}>X</Close>
       <ModalContainer>
         <ModalImage ref={imageRef}></ModalImage>

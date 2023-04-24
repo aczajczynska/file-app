@@ -185,13 +185,14 @@ const DropZone: FC = () => {
         {unsupportedFiles.length === 0 ? (
           <>
             <Col xs={3}>
-              <Button label="Upload" onClick={uploadImage} />
+              <Button data-testid="upload-file-button" label="Upload" onClick={uploadImage} />
             </Col>
             <Col xs={3}>
-              <Button label="Save and show" onClick={saveFiles} />
+              <Button data-testid="save-show-file-button" label="Save and show" onClick={saveFiles} />
             </Col>
             <Col xs={3}>
               <FileInput
+                data-testid="file-input"
                 ref={fileSpaceRef}
                 type="file"
                 onChange={(event) => {
@@ -208,16 +209,16 @@ const DropZone: FC = () => {
       </Row>
       <Row>
         <Col>
-          <DropContent onDragOver={dragOver} onDragEnter={dragEnter} onDragLeave={dragLeave} onDrop={fileDrop}>
+          <DropContent data-testid="drop-space" onDragOver={dragOver} onDragEnter={dragEnter} onDragLeave={dragLeave} onDrop={fileDrop}>
             <UploadImg src={Upload} />
-            <DropText>Drag and Drop files here or click to select files.</DropText>
+            <DropText data-testid="drag-drop-space-text">Drag and Drop files here or click to select files.</DropText>
           </DropContent>
 
-          <FileDisplayContainer>
+          <FileDisplayContainer data-testid="files-display-container">
             {validFiles.map((data: any, i: any) => (
               <FileStatusBar key={i}>
                 <>
-                  <div onClick={!data.invalid ? () => openImageModal(data) : () => removeFileImage(data.name)}>
+                  <div data-testid="file" onClick={!data.invalid ? () => openImageModal(data) : () => removeFileImage(data.name)}>
                     <FileInfo>
                       <FileTypeLogo src={File} />
                       <FileName>{data.name}</FileName>
@@ -227,7 +228,9 @@ const DropZone: FC = () => {
                       {data.invalid && <FileErrorMessage>{errorMessage}</FileErrorMessage>}
                     </FileInfo>
                   </div>
-                  <FileRemove onClick={() => removeFileImage(data.name)}>X</FileRemove>
+                  <FileRemove data-testid="remove-file-button" onClick={() => removeFileImage(data.name)}>
+                    X
+                  </FileRemove>
                 </>
               </FileStatusBar>
             ))}
@@ -235,9 +238,9 @@ const DropZone: FC = () => {
         </Col>
       </Row>
       <Modal imageRef={modalImageRef} open={isOpen} onClose={() => closeModal()} />
-      <BootstrapToast onClose={toggleShowTost} show={showToast} />
+      <BootstrapToast data-testid="toast-after-upload" onClose={toggleShowTost} show={showToast} />
       <RModal open={isTableModalOpen} onClose={closeTableModal}>
-        <TableComponent />
+        <TableComponent data-testid="files-table" />
       </RModal>
     </Container>
   )

@@ -14,7 +14,7 @@ export const RModal: FC<Props> = ({ open, children, onClose }) => {
   if (!open) return null
 
   return ReactDom.createPortal(
-    <StyledOverlay>
+    <StyledOverlay data-testid="table-file-modal">
       <StyledClose onClick={onClose}>X</StyledClose>
       <StyledModalContainer>{children}</StyledModalContainer>
     </StyledOverlay>,
