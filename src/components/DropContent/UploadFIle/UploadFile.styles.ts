@@ -1,11 +1,11 @@
-import styled from "theme/styled-components";
+import styled from 'theme/styled-components'
 
 export const UploadFileContaner = styled.div`
   height: 85vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
+`
 
 export const Title = styled.h3`
   color: ${({ theme }) => theme.colors.islandMoment};
@@ -13,4 +13,4 @@ export const Title = styled.h3`
   padding-bottom: 50px;
   padding-top: 50px;
   text-align: center;
-`;
+`

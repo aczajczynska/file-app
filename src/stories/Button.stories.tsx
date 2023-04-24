@@ -1,19 +1,19 @@
-import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import React from 'react'
+import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { Button } from "../ui-components/Button/index";
+import { Button } from '../ui-components/Button/index'
 
 export default {
-  title: "Example/Button",
+  title: 'Example/Button',
   component: Button,
   argTypes: {
-    onClick: { action: "clicked" },
+    onClick: { action: 'clicked' },
   },
-} as ComponentMeta<typeof Button>;
+} as ComponentMeta<typeof Button>
 
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
+const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />
 
-export const Btn = Template.bind({});
+export const Btn = Template.bind({})
 Btn.args = {
-  label: "Button",
-};
+  label: 'Button',
+}

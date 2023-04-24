@@ -1,8 +1,8 @@
-import { FC } from "react";
+import { FC } from 'react'
 
-import CanvasDrawing from "components/CanvasDrawing";
+import CanvasDrawing from 'components/CanvasDrawing'
 
-import { DrawingContainer } from "./DrawingSection.styles";
+import { DrawingContainer } from './DrawingSection.styles'
 
 const DrawingSection: FC = () => {
   return (
@@ -11,7 +11,7 @@ const DrawingSection: FC = () => {
         <CanvasDrawing />
       </DrawingContainer>
     </>
-  );
-};
+  )
+}
 
-export default DrawingSection;
+export default DrawingSection

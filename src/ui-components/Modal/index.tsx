@@ -1,14 +1,14 @@
-import ReactDom from "react-dom";
-import { ModalContainer, Overlay, Close, ModalImage } from "./Modal.styles";
+import ReactDom from 'react-dom'
+import { ModalContainer, Overlay, Close, ModalImage } from './Modal.styles'
 
 interface ModalProps {
-  open: boolean;
-  onClose: () => void;
-  imageRef: any;
+  open: boolean
+  onClose: () => void
+  imageRef: any
 }
 
 const Modal = ({ open, onClose, imageRef }: ModalProps) => {
-  if (!open) return null;
+  if (!open) return null
 
   return ReactDom.createPortal(
     <Overlay>
@@ -17,8 +17,8 @@ const Modal = ({ open, onClose, imageRef }: ModalProps) => {
         <ModalImage ref={imageRef}></ModalImage>
       </ModalContainer>
     </Overlay>,
-    document.getElementById("portal") as HTMLElement
-  );
-};
+    document.getElementById('portal') as HTMLElement
+  )
+}
 
-export default Modal;
+export default Modal

@@ -1,5 +1,5 @@
-import { FC } from "react";
-import Header from "../../components/Header/Header";
+import { FC } from 'react'
+import Header from '../../components/Header/Header'
 
 const Layout: FC = ({ children }) => {
   return (
@@ -7,7 +7,7 @@ const Layout: FC = ({ children }) => {
       <Header />
       <div>{children}</div>
     </>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout

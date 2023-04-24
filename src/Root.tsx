@@ -1,12 +1,12 @@
-import { lazy, Suspense } from "react";
-import { ThemeProvider } from "styled-components";
-import theme from "theme/theme";
-import Layout from "./components/Layout/Layout";
+import { lazy, Suspense } from 'react'
+import { ThemeProvider } from 'styled-components'
+import theme from 'theme/theme'
+import Layout from './components/Layout/Layout'
 
 function Root() {
-  const AccordionSection = lazy(() => import("sections/QASection"));
-  const UploadFileSection = lazy(() => import("sections/UploadFileSection"));
-  const DrawingSection = lazy(() => import("sections/DrawingSection"));
+  const AccordionSection = lazy(() => import('sections/QASection'))
+  const UploadFileSection = lazy(() => import('sections/UploadFileSection'))
+  const DrawingSection = lazy(() => import('sections/DrawingSection'))
 
   return (
     <ThemeProvider theme={theme}>
@@ -22,7 +22,7 @@ function Root() {
         </Suspense>
       </Layout>
     </ThemeProvider>
-  );
+  )
 }
 
-export default Root;
+export default Root

@@ -1,10 +1,10 @@
-import styled from "theme/styled-components";
-import { css } from "styled-components";
-import { Themed } from "namespace/theme";
+import styled from 'theme/styled-components'
+import { css } from 'styled-components'
+import { Themed } from 'namespace/theme'
 
 interface TextProps extends Themed {
-  option: "title" | "subtitle" | "content" | "text" | "whiteTitle";
-  center?: boolean;
+  option: 'title' | 'subtitle' | 'content' | 'text' | 'whiteTitle'
+  center?: boolean
 }
 
 export const Txt = styled.h1<TextProps>`
@@ -16,19 +16,19 @@ export const Txt = styled.h1<TextProps>`
   }
 
   ${({ option, theme }: TextProps) =>
-    option === "title" &&
+    option === 'title' &&
     css`
       color: ${theme.colors.islandMoment};
     `}
 
   ${({ option, theme }: TextProps) =>
-    option === "whiteTitle" &&
+    option === 'whiteTitle' &&
     css`
       color: ${theme.colors.white};
     `}
 
     ${({ option, theme }: TextProps) =>
-    option === "subtitle" &&
+    option === 'subtitle' &&
     css`
       color: ${theme.colors.islandMoment};
       font-size: ${theme.fontSize.huge};
@@ -39,7 +39,7 @@ export const Txt = styled.h1<TextProps>`
     `}
 
      ${({ option, theme }: TextProps) =>
-    option === "content" &&
+    option === 'content' &&
     css`
       color: ${theme.colors.black};
       font-size: ${theme.fontSize.small};
@@ -50,7 +50,7 @@ export const Txt = styled.h1<TextProps>`
     `}
 
     ${({ option, theme }: TextProps) =>
-    option === "text" &&
+    option === 'text' &&
     css`
       color: ${theme.colors.black};
       font-size: ${theme.fontSize.tiny};
@@ -61,4 +61,4 @@ export const Txt = styled.h1<TextProps>`
     css`
       text-align: center;
     `}
-`;
+`

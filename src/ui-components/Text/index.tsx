@@ -1,9 +1,9 @@
-import { Txt } from "./Text.styles";
+import { Txt } from './Text.styles'
 
 export interface TextProps {
-  content: string;
-  option: "title" | "subtitle" | "content" | "text" | "whiteTitle";
-  center?: boolean;
+  content: string
+  option: 'title' | 'subtitle' | 'content' | 'text' | 'whiteTitle'
+  center?: boolean
 }
 
 const Text = ({ center, content, option, ...props }: TextProps) => {
@@ -13,7 +13,7 @@ const Text = ({ center, content, option, ...props }: TextProps) => {
         {content}
       </Txt>
     </>
-  );
-};
+  )
+}
 
-export default Text;
+export default Text

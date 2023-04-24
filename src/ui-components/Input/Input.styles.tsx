@@ -1,16 +1,14 @@
-import { InputHTMLAttributes } from "react";
-import styled from "theme/styled-components";
-import { Themed } from "namespace/theme";
+import { InputHTMLAttributes } from 'react'
+import styled from 'theme/styled-components'
+import { Themed } from 'namespace/theme'
 
-export interface InputProps
-  extends InputHTMLAttributes<HTMLInputElement>,
-    Themed {
-  warn?: boolean;
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement>, Themed {
+  warn?: boolean
 }
 
 export const Container = styled.div`
   width: 350px;
-`;
+`
 
 export const StyledInput = styled.input`
   border: none;
@@ -41,7 +39,7 @@ export const StyledInput = styled.input`
     padding: 12px 30px 12px 5px;
     font-size: ${({ theme }) => theme.fontSize.minuscule};
   }
-`;
+`
 
 export const InputWrapper = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.grey};
@@ -49,7 +47,7 @@ export const InputWrapper = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-`;
+`
 
 export const Icon = styled.img`
   position: absolute;
@@ -57,14 +55,14 @@ export const Icon = styled.img`
   width: 10px;
   height: 8px;
   cursor: pointer;
-`;
+`
 
 export const LabelSection = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-bottom: 2px;
-`;
+`
 
 export const Label = styled.span`
   font-size: ${({ theme }) => theme.fontSize.minuscule};
@@ -73,18 +71,18 @@ export const Label = styled.span`
   @media (min-width: 768px) {
     font-size: ${({ theme }) => theme.fontSize.tiny};
   }
-`;
+`
 
 export const SubLabel = styled(Label)`
   font-size: ${({ theme }) => theme.fontSize.tinyXs};
   color: ${({ theme }) => theme.colors.grey};
-`;
+`
 
 export const WarningText = styled(SubLabel)`
   color: ${({ theme }) => theme.colors.error};
   font-size: ${({ theme }) => theme.fontSize.tinyXs};
   margin-left: 3px;
-`;
+`
 
 export const InputInfo = styled.div`
   text-decoration: underline;
@@ -93,4 +91,4 @@ export const InputInfo = styled.div`
   font-size: ${({ theme }) => theme.fontSize.tinyXs};
   color: ${({ theme }) => theme.colors.grey};
   cursor: pointer;
-`;
+`

@@ -1,4 +1,4 @@
-import styled from "theme/styled-components";
+import styled from 'theme/styled-components'
 
 export const HeaderText = styled.h1`
   font-family: ${({ theme }) => theme.fontFamily.secondary};
@@ -9,4 +9,4 @@ export const HeaderText = styled.h1`
   @media (max-width: 960px) {
     font-size: 24px;
   }
-`;
+`

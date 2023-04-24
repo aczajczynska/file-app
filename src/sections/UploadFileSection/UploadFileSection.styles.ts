@@ -1,4 +1,4 @@
-import styled from "theme/styled-components";
+import styled from 'theme/styled-components'
 
 export const UploadFileContainer = styled.div`
   height: 60vh;
@@ -6,4 +6,4 @@ export const UploadFileContainer = styled.div`
   @media (min-width: 768px) {
     height: 70vh;
   }
-`;
+`

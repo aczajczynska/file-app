@@ -1,9 +1,9 @@
-import React from "react";
-import { Toast } from "react-bootstrap";
+import React from 'react'
+import { Toast } from 'react-bootstrap'
 
 interface BootstrapToastProps {
-  show: boolean;
-  onClose: () => void;
+  show: boolean
+  onClose: () => void
 }
 
 export const BootstrapToast = ({ show, onClose }: BootstrapToastProps) => {
@@ -15,5 +15,5 @@ export const BootstrapToast = ({ show, onClose }: BootstrapToastProps) => {
       </Toast.Header>
       <Toast.Body>Yeees! Success! Files sent correctly!</Toast.Body>
     </Toast>
-  );
-};
+  )
+}

@@ -1,12 +1,12 @@
-import { useContext } from "react";
-import { Table } from "react-bootstrap";
+import { useContext } from 'react'
+import { Table } from 'react-bootstrap'
 
-import { ISOToDate } from "helpers/time";
-import Text from "ui-components/Text";
-import { FilesToUploadContext } from "context/filesToUpload";
+import { ISOToDate } from 'helpers/time'
+import Text from 'ui-components/Text'
+import { FilesToUploadContext } from 'context/filesToUpload'
 
 export const TableComponent = () => {
-  const { filesList } = useContext(FilesToUploadContext);
+  const { filesList } = useContext(FilesToUploadContext)
 
   return (
     <>
@@ -37,5 +37,5 @@ export const TableComponent = () => {
         <Text center content="No files to display" option="subtitle" />
       )}
     </>
-  );
-};
+  )
+}
