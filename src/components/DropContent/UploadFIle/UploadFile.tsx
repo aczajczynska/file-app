@@ -8,7 +8,7 @@ const UploadFile = (): JSX.Element => {
     <Container className="contact-content">
       <Row>
         <Col>
-          <Title>Drag and Drop File to Upload</Title>
+          <Title data-testid="upload-section-header">Drag and Drop File to Upload</Title>
         </Col>
       </Row>
       <Col>
