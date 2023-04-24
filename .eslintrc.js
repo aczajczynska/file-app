@@ -10,7 +10,6 @@ module.exports = {
   },
   root: true,
   extends: [
-    // "plugin:prettier/recommended",
     "eslint:recommended",
     "plugin:react-hooks/recommended",
   ],
@@ -24,28 +23,29 @@ module.exports = {
     ],
     "space-before-blocks": "error",
     "no-var": "error",
+    "@typescript-eslint/no-unnecessary-type-constraint": "off"
   },
   overrides: [
-    // {
-    //   files: "[**/*.stories.*]",
-    //   parser: "@typescript-eslint/parser",
-    //   plugins: ["@typescript-eslint"],
-    //   extends: [
-    //     "airbnb-typescript/base",
-    //     "eslint:recommended",
-    //     "plugin:@typescript-eslint/recommended",
-    //     "plugin:@typescript-eslint/eslint-recommended",
-    //     "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    //     "plugin:prettier/recommended",
-    //   ],
-    //   rules: {
-    //     "no-plusplus": "off",
-    //     "no-underscore-dangle": "off",
-    //     "import/prefer-default-export": "off",
-    //     "prettier/prettier": "warn",
-    //     "react/react-in-jsx-scope": "off",
-    //   },
-    // },
+    {
+      files: "[**/*.stories.*]",
+      parser: "@typescript-eslint/parser",
+      plugins: ["@typescript-eslint"],
+      extends: [
+        "airbnb-typescript/base",
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "plugin:prettier/recommended",
+      ],
+      rules: {
+        "no-plusplus": "off",
+        "no-underscore-dangle": "off",
+        "import/prefer-default-export": "off",
+        "prettier/prettier": "warn",
+        "react/react-in-jsx-scope": "off",
+      },
+    },
     {
       files: ["*.ts", "*.tsx"],
       rules: {
