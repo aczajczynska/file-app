@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { ReactNode, useState } from "react";
 
 export interface FilesToUploadContextTypes {

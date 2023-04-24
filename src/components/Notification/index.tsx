@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import File from "assets/images/file.png";
 
 export const notificationComponent = () => {

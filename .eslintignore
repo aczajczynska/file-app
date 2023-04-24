@@ -1,0 +1,10 @@
+**/*.stories.ts
+**/*.stories.js
+**/*.stories.jsx
+**/*.stories.tsx
+
+node_modules/*
+build
+.github
+./node_modules/**
+**/node_modules/**
