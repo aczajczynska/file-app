@@ -1,10 +1,10 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import React from "react";
+import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Pagination from '../ui-components/Pagination';
+import Pagination from "../ui-components/Pagination";
 
 export default {
-  title: 'Example/Pagination',
+  title: "Example/Pagination",
   component: Pagination,
 } as ComponentMeta<typeof Pagination>;
 

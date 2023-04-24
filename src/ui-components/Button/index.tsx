@@ -1,10 +1,10 @@
-import React from 'react';
-import { ButtonComponent } from './Button.styles';
+import React from "react";
+import { ButtonComponent } from "./Button.styles";
 
 interface ButtonProps {
   label: string;
-  option?: 'primary' | 'secondary' | 'disable' | 'success';
-  size?: 'small' | 'medium' | 'large';
+  option?: "primary" | "secondary" | "disable" | "success";
+  size?: "small" | "medium" | "large";
   onClick?: () => void;
 }
 

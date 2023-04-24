@@ -1,6 +1,6 @@
-import { FC } from 'react';
-import { UploadFileContainer } from './UploadFileSection.styles';
-import UploadFile from '../../components/DropContent/UploadFIle/UploadFile';
+import { FC } from "react";
+import { UploadFileContainer } from "./UploadFileSection.styles";
+import UploadFile from "../../components/DropContent/UploadFIle/UploadFile";
 
 const UploadFileSection: FC = () => {
   return (

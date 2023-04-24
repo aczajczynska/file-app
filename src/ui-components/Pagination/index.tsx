@@ -1,5 +1,5 @@
-import { v1 } from 'uuid';
-import { PaginationCore, PaginationContent } from './Pagination.styles';
+import { v1 } from "uuid";
+import { PaginationCore, PaginationContent } from "./Pagination.styles";
 
 interface PaginationProps {
   currentValue: number;
@@ -18,7 +18,7 @@ const Pagination = ({
       pages.push(
         <PaginationContent key={v1()} isCurrent={value === currentValue}>
           {value}
-        </PaginationContent>,
+        </PaginationContent>
       );
     }
     return pages;

@@ -6,7 +6,7 @@ export type RenderType =
   | JSX.Element
   | Array<RenderType>;
 
-  export interface WithChildrenProps {
+export interface WithChildrenProps {
   children: RenderType;
 }
 export interface WithExcludedChildrenProps {

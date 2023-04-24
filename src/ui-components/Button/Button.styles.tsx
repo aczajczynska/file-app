@@ -1,11 +1,11 @@
-import { ButtonHTMLAttributes } from 'react';
-import { css } from 'styled-components';
-import styled from 'theme/styled-components';
-import { Themed } from 'namespace/theme';
+import { ButtonHTMLAttributes } from "react";
+import { css } from "styled-components";
+import styled from "theme/styled-components";
+import { Themed } from "namespace/theme";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, Themed {
-  option?: 'primary' | 'secondary' | 'disable' | 'success';
-  size?: 'small' | 'medium' | 'large';
+  option?: "primary" | "secondary" | "disable" | "success";
+  size?: "small" | "medium" | "large";
 }
 
 export const ButtonComponent = styled.button`
@@ -25,44 +25,44 @@ export const ButtonComponent = styled.button`
 
       @media (min-width: 767px) {
         font-size: ${theme.fontSize.tiny};
-      } ;
+      }
     `}
 
   ${({ option, theme }: ButtonProps) =>
-    option === 'secondary' &&
+    option === "secondary" &&
     css`
       background-color: ${theme.colors.dodgerBlue};
       color: ${theme.colors.black};
     `}
 
     ${({ option, theme }: ButtonProps) =>
-    option === 'disable' &&
+    option === "disable" &&
     css`
       background-color: ${theme.colors.silverChalice};
       color: ${theme.colors.grey};
     `}
 
       ${({ option, theme }: ButtonProps) =>
-    option === 'success' &&
+    option === "success" &&
     css`
       background-color: ${theme.colors.green};
       color: ${theme.colors.white};
     `}
 
      ${({ size }: ButtonProps) =>
-    size === 'small' &&
+    size === "small" &&
     css`
       width: 10%;
     `}
 
     ${({ size }: ButtonProps) =>
-    size === 'medium' &&
+    size === "medium" &&
     css`
       width: 30%;
     `}
 
      ${({ size }: ButtonProps) =>
-    size === 'large' &&
+    size === "large" &&
     css`
       width: 100%;
     `}

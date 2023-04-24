@@ -26,7 +26,7 @@ export const UploadImg = styled.img`
   @media (max-width: 580px) {
     width: 35px;
     height: 35px;
-  } ;
+  }
 `;
 
 export const FileDisplayContainer = styled.div`
@@ -34,7 +34,7 @@ export const FileDisplayContainer = styled.div`
 
   @media (max-width: 580px) {
     margin-top: 10px;
-  } ;
+  }
 `;
 
 export const FileInfo = styled.div`

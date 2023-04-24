@@ -1,8 +1,8 @@
-import { Txt } from './Text.styles';
+import { Txt } from "./Text.styles";
 
 export interface TextProps {
   content: string;
-  option: 'title' | 'subtitle' | 'content' | 'text' | 'whiteTitle';
+  option: "title" | "subtitle" | "content" | "text" | "whiteTitle";
   center?: boolean;
 }
 
