@@ -1,20 +1,20 @@
-import { Input } from "../Input";
-import styled from "theme/styled-components";
+import { Input } from '../Input'
+import styled from 'theme/styled-components'
 
 export const Container = styled.div`
   position: relative;
   width: 350px;
-`;
+`
 
 export const StyledInput = styled(Input)`
   caret-color: transparent;
   cursor: pointer;
-`;
+`
 
 export const InputWrapper = styled.div`
   position: relative;
   z-index: 2;
-`;
+`
 
 export const DropdownSection = styled.div`
   position: absolute;
@@ -30,7 +30,7 @@ export const DropdownSection = styled.div`
   overflow: auto;
   max-height: 120px;
 
-  &[aria-expanded="true"] {
+  &[aria-expanded='true'] {
     display: block;
   }
 
@@ -47,7 +47,7 @@ export const DropdownSection = styled.div`
     margin-top: 2px;
     margin-bottom: 2px;
   }
-`;
+`
 
 export const DropdownItem = styled.div`
   height: 32px;
@@ -73,4 +73,4 @@ export const DropdownItem = styled.div`
     font-size: ${({ theme }) => theme.fontSize.tiny};
     font-weight: ${({ theme }) => theme.fontWeight.regular};
   }
-`;
+`

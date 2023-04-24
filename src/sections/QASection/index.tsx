@@ -1,9 +1,9 @@
-import React from "react";
-import { QASection, HeaderQAContainer } from "./QASection.styles";
-import BootstrapAccordion from "./BootstrapAccordion";
-import { Container, Col, Row } from "react-bootstrap";
-import Text from "../../ui-components/Text";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React from 'react'
+import { QASection, HeaderQAContainer } from './QASection.styles'
+import BootstrapAccordion from './BootstrapAccordion'
+import { Container, Col, Row } from 'react-bootstrap'
+import Text from '../../ui-components/Text'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 const QAComponent = () => {
   return (
@@ -26,7 +26,7 @@ const QAComponent = () => {
         </Row>
       </Container>
     </QASection>
-  );
-};
+  )
+}
 
-export default QAComponent;
+export default QAComponent

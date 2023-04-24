@@ -1,0 +1,12 @@
+#!/bin/bash
+. "$(dirname -- "$0")/_/husky.sh"
+
+ INPUT_FILE=$1
+ START_LINE=`head -n1 $INPUT_FILE`
+ PATTERN="^[[A-Z]+-[0-9]+].*$"
+if ! echo "$START_LINE" | grep -Eqe "$PATTERN"; then
+   echo "Bad commit message, see example: [FA-234] commit message"
+   echo "Errored message: "
+   echo $START_LINE
+   exit 1
+ fi

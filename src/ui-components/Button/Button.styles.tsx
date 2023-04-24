@@ -1,11 +1,11 @@
-import { ButtonHTMLAttributes } from 'react';
-import { css } from 'styled-components';
-import styled from 'theme/styled-components';
-import { Themed } from 'namespace/theme';
+import { ButtonHTMLAttributes } from 'react'
+import { css } from 'styled-components'
+import styled from 'theme/styled-components'
+import { Themed } from 'namespace/theme'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, Themed {
-  option?: 'primary' | 'secondary' | 'disable' | 'success';
-  size?: 'small' | 'medium' | 'large';
+  option?: 'primary' | 'secondary' | 'disable' | 'success'
+  size?: 'small' | 'medium' | 'large'
 }
 
 export const ButtonComponent = styled.button`
@@ -25,7 +25,7 @@ export const ButtonComponent = styled.button`
 
       @media (min-width: 767px) {
         font-size: ${theme.fontSize.tiny};
-      } ;
+      }
     `}
 
   ${({ option, theme }: ButtonProps) =>
@@ -66,4 +66,4 @@ export const ButtonComponent = styled.button`
     css`
       width: 100%;
     `}
-`;
+`

@@ -1,21 +1,22 @@
-import React, { ReactNode, useState } from "react";
+/* eslint-disable no-unused-vars */
+import React, { ReactNode, useState } from 'react'
 
 export interface FilesToUploadContextTypes {
-  filesList?: any;
-  setFilesList?: (_value: any) => void;
+  filesList?: any
+  setFilesList?: (_value: any) => void
 }
 
 export const FilesToUploadContext = React.createContext({
   filesList: [],
   setFilesList: (_value: any) => {},
-});
+})
 
 export interface FilesToUploadProviderProps {
-  children: ReactNode;
+  children: ReactNode
 }
 
 export const FilesProvider = ({ children }: FilesToUploadProviderProps) => {
-  const [filesList, setFilesList] = useState([]);
+  const [filesList, setFilesList] = useState([])
 
   return (
     <FilesToUploadContext.Provider
@@ -26,5 +27,5 @@ export const FilesProvider = ({ children }: FilesToUploadProviderProps) => {
     >
       {children}
     </FilesToUploadContext.Provider>
-  );
-};
+  )
+}

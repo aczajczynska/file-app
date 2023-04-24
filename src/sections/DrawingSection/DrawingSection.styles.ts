@@ -1,4 +1,4 @@
-import styled from "theme/styled-components";
+import styled from 'theme/styled-components'
 
 export const DrawingContainer = styled.div`
   display: flex;
@@ -10,4 +10,4 @@ export const DrawingContainer = styled.div`
     height: 100vh;
     width: 100vw;
   }
-`;
+`

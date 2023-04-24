@@ -1,10 +1,10 @@
-import { css } from 'styled-components';
-import styled from 'theme/styled-components';
-import { Themed } from 'namespace/theme';
+import { css } from 'styled-components'
+import styled from 'theme/styled-components'
+import { Themed } from 'namespace/theme'
 import { WithChildrenProps } from 'namespace/render'
 
-interface PaginationContentProps extends Themed, WithChildrenProps{
-  isCurrent: boolean;
+interface PaginationContentProps extends Themed, WithChildrenProps {
+  isCurrent: boolean
 }
 
 export const PaginationCore = styled.div<Themed & WithChildrenProps>`
@@ -22,7 +22,7 @@ export const PaginationContent = styled.div<PaginationContentProps>`
   cursor: pointer;
   line-height: 120%;
 
-   ${({ theme }: Themed) =>
+  ${({ theme }: Themed) =>
     css`
       font-size: ${theme.fontSize.tinyXs};
       font-weight: ${theme.fontWeight.light};
@@ -30,7 +30,7 @@ export const PaginationContent = styled.div<PaginationContentProps>`
       padding: ${theme.spacing.tiny};
     `}
 
-    ${({ isCurrent, theme }: PaginationContentProps) =>
+  ${({ isCurrent, theme }: PaginationContentProps) =>
     isCurrent &&
     css`
       font-weight: ${theme.fontWeight.semiBold};

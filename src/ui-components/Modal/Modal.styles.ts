@@ -1,4 +1,4 @@
-import styled from "theme/styled-components";
+import styled from 'theme/styled-components'
 
 export const ModalContainer = styled.div`
   position: fixed;
@@ -9,12 +9,12 @@ export const ModalContainer = styled.div`
   padding: 50px;
   z-index: 1000;
   width: 50%;
-`;
+`
 
 export const ModalContent = styled.div`
   display: flex;
   flex-direction: column;
-`;
+`
 
 export const Overlay = styled.div`
   position: fixed;
@@ -24,7 +24,7 @@ export const Overlay = styled.div`
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.4);
   z-index: 1000;
-`;
+`
 
 export const Close = styled.span`
   position: absolute;
@@ -35,7 +35,7 @@ export const Close = styled.span`
   font-weight: bold;
   transition: 0.3s;
   cursor: pointer;
-`;
+`
 
 export const ModalImage = styled.div`
   position: absolute;
@@ -50,4 +50,4 @@ export const ModalImage = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   background-image: none;
-`;
+`
