@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-import {url} from '../support/url';
+import { url } from '../support/url';
 
 export const clickButtonAndFindFile = () => {
   const filepath = 'cypress/fixtures/images/toTest.png'

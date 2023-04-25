@@ -87,14 +87,14 @@ function CanvasDrawing() {
       <Container>
         <Row>
           <Col>
-            <Text option="subtitle" content="Dawing section" center />
+            <Text data-testid="drawing-header-text" option="subtitle" content="Dawing section" center />
             <Button label="Clear Table" onClick={clearDrawingTable} />
           </Col>
         </Row>
 
         <Row>
           <Col>
-            <canvas ref={canvasRef} onMouseDown={startDrawing} onMouseUp={stopDrawing} onMouseMove={draw} />
+            <canvas data-testid="canvas-content" ref={canvasRef} onMouseDown={startDrawing} onMouseUp={stopDrawing} onMouseMove={draw} />
           </Col>
         </Row>
       </Container>
